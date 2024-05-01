@@ -100,7 +100,7 @@ const Cart = () => {
 
         axios
             .post(
-                `http://localhost:5000/api/v1/payment/create-checkout-session`,
+                `https://tradetrove-backend.onrender.com/api/v1/payment/create-checkout-session`,
                 {
                     userId: user?.id,
                     cartItem,
