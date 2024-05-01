@@ -19,7 +19,7 @@ const Chat = () => {
     const { user } = UserStore();
 
     useEffect(() => {
-        socket.current = io('ws://https://tradetrove-backend.onrender.com');
+        socket.current = io('https://tradetrove-backend.onrender.com');
         socket.current?.on('getMessage', (data) => {
             setArrivalMessage({
                 sender: data.senderId,
