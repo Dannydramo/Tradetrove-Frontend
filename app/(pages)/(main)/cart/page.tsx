@@ -102,7 +102,7 @@ const Cart = () => {
             .post(
                 `https://tradetrove-backend.onrender.com/api/v1/payment/create-checkout-session`,
                 {
-                    userId: user?.id,
+                    userId: user.id,
                     cartItem,
                     vendorId,
                 }
