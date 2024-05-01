@@ -85,7 +85,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         </Link>
                         {user ? (
                             <Link href="/profile/orders">
-                                {' '}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -102,7 +101,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                 </svg>
                             </Link>
                         ) : (
-                            <div className="flex space-x-4 items-center">
+                            <div className="hidden sm:flex space-x-4 items-center">
                                 <Link
                                     href={'/login'}
                                     className="bg-[#4F80E1] text-white py-2 px-8 rounded-full transition"
