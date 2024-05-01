@@ -19,7 +19,7 @@ const Chat = () => {
     const { user } = UserStore();
 
     useEffect(() => {
-        socket.current = io('ws://localhost:5000');
+        socket.current = io('ws://https://tradetrove-backend.onrender.com');
         socket.current?.on('getMessage', (data) => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -44,7 +44,7 @@ const Chat = () => {
         const getConversations = async () => {
             try {
                 const res = await axios.get(
-                    `http://localhost:5000/api/v1/conversation/${user?.id!}`
+                    `https://tradetrove-backend.onrender.com/api/v1/conversation/${user?.id!}`
                 );
                 setConversations(res.data.conversation);
             } catch (error) {
@@ -59,7 +59,7 @@ const Chat = () => {
             try {
                 if (currentChat) {
                     const res = await axios.get(
-                        `http://localhost:5000/api/v1/message/${currentChat._id}`
+                        `https://tradetrove-backend.onrender.com/api/v1/message/${currentChat._id}`
                     );
                     setMessages(res.data);
                 }
@@ -83,7 +83,7 @@ const Chat = () => {
             });
             try {
                 const res = await axios.post(
-                    'http://localhost:5000/api/v1/message/send',
+                    'https://tradetrove-backend.onrender.com/api/v1/message/send',
                     {
                         conversationId: currentChat._id,
                         sender: user?.id,
