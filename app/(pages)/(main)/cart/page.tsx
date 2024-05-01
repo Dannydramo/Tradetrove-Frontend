@@ -28,6 +28,8 @@ const Cart = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const { user } = UserStore();
+    console.log(user);
+
     const fetchVendorDetails = async (vendorId: string) => {
         try {
             const { status, message, data } = await getVendorCartDetails(
@@ -102,7 +104,7 @@ const Cart = () => {
             .post(
                 `https://tradetrove-backend.onrender.com/api/v1/payment/create-checkout-session`,
                 {
-                    userId: user.id,
+                    userId: user?._id,
                     cartItem,
                     vendorId,
                 }
@@ -113,7 +115,6 @@ const Cart = () => {
                 }
             })
             .catch((err: { message: any }) => console.log(err.message));
-        console.log(cartItem);
     };
 
     const handleStartConversation = async (vendorId: string) => {
