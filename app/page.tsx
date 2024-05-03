@@ -1,6 +1,6 @@
 import Hero from './_components/Hero';
 import Layout from './_components/Layout';
-import Vendor from './_components/Vendor';
+import PopularVendors from './_components/PopularVendors';
 import VendorsRegion from './_components/VendorsRegion';
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
             <Layout>
                 <div className="">
                     <Hero />
-                    <Vendor />
+                    <PopularVendors />
                     <VendorsRegion />
                 </div>
             </Layout>

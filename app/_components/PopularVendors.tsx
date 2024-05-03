@@ -1,17 +1,17 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import VendorsCard from './VendorsCard';
-import { getVendors } from '../service/vendor';
+import { getPopularVendors } from '../service/vendor';
 import { VendorProps } from '../interface/vendor';
 import ProductCardSkeleton from '../skeleton/ProductCardSkeleton';
 
-const Vendor = () => {
+const PopularVendors = () => {
     const [vendors, setVendors] = useState<VendorProps[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchAllVendor = async () => {
             try {
-                const { status, message, data } = await getVendors();
+                const { status, message, data } = await getPopularVendors();
                 if (status !== 200) {
                     setLoading(false);
                     return;
@@ -49,4 +49,4 @@ const Vendor = () => {
     );
 };
 
-export default Vendor;
+export default PopularVendors;

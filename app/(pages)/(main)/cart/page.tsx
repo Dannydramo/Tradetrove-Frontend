@@ -125,7 +125,7 @@ const Cart = () => {
         try {
             const { status, message, data } = await startConversation(
                 vendorId,
-                user?.id!
+                user?._id
             );
             if (status !== 200) {
                 return;
@@ -351,7 +351,7 @@ const Cart = () => {
                                         </TableBody>
                                     </Table>
 
-                                    <div className="flex justify-between my-4">
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-between my-4">
                                         <Button
                                             onClick={() =>
                                                 handleProceedToCheckout(
@@ -386,7 +386,7 @@ const Cart = () => {
                                                     />
                                                 </svg>
                                             </span>{' '}
-                                            <span> Chat with vendor</span>
+                                            <span> Message vendor</span>
                                         </Button>
                                     </div>
                                 </div>

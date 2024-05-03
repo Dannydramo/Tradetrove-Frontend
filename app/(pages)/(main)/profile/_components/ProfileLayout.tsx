@@ -14,7 +14,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                         <div className="md:min-w-60 md:max-w-64 pr-8 flex flex-row md:flex-col md:space-y-6 font-semibold h-full">
                             <Link
                                 href={'/profile/orders'}
-                                className={`flex items-center font-medium hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
+                                className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
                                     pathname.includes('/orders') &&
                                     'bg-[#F6F8FF] text-[#4F80E1]'
                                 }`}
@@ -39,7 +39,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                             <Link
                                 href={'/profile/wishlist'}
-                                className={`flex items-center font-medium hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
+                                className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
                                     pathname === '/profile/wishlist' &&
                                     'bg-[#F6F8FF] text-[#4F80E1]'
                                 }`}
@@ -64,7 +64,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                             <Link
                                 href={'/profile/password'}
-                                className={`flex items-center font-medium hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
+                                className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
                                     pathname === '/profile/password' &&
                                     'bg-[#F6F8FF] text-[#4F80E1]'
                                 }`}
@@ -89,7 +89,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                             </Link>
                             <Link
                                 href={'/profile/account'}
-                                className={`flex items-center font-medium hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
+                                className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
                                     pathname === '/profile/account' &&
                                     'bg-[#F6F8FF] text-[#4F80E1]'
                                 }`}

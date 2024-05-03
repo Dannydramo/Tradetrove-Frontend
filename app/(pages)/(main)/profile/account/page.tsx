@@ -13,9 +13,9 @@ const page = () => {
 
     return (
         <ProfileLayout>
-            <section className="md:px-8 w-full border-l">
+            <section className="md:px-8 w-full md:border-l">
                 <h1 className="font-semibold text-base">Account Details</h1>
-                <div className="w-80 sm:min-w-[400px] my-12">
+                <div className="w-full md:max-w-[400px] my-12">
                     <Avatar>
                         <AvatarFallback>
                             {user && user.username[0]}

@@ -37,7 +37,7 @@ const OrderTable = () => {
     return (
         <>
             {orderData.length > 0 ? (
-                <Table className="text-xs border-l">
+                <Table className="text-xs md:border-l">
                     <TableCaption>A list of your orders.</TableCaption>
                     <TableHeader>
                         <TableRow>
@@ -123,7 +123,7 @@ const OrderTable = () => {
             ) : (
                 <>
                     {' '}
-                    <div className="border-l px-6 w-full">
+                    <div className="md:border-l px-6 w-full">
                         {' '}
                         <div className="text-center mx-auto mt-12 h-full flex flex-col justify-center items-center">
                             <Image

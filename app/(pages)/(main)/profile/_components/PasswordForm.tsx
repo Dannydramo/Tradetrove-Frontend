@@ -49,7 +49,7 @@ const PasswordForm = () => {
                     type="password"
                     name="password"
                     placeholder="Enter Old Password"
-                    className="text-sm mt-1 outline-none w-full sm:w-96 bg-transparent"
+                    className="text-sm mt-1 outline-none w-full md:w-96 bg-transparent"
                     value={formData.password}
                     onChange={handleValueChange}
                 />
@@ -65,7 +65,7 @@ const PasswordForm = () => {
                     type="password"
                     name="newPassword"
                     placeholder="Enter New Password"
-                    className="text-sm mt-1 outline-none w-full sm:w-96 bg-transparent"
+                    className="text-sm mt-1 outline-none w-full md:w-96 bg-transparent"
                     value={formData.newPassword}
                     onChange={handleValueChange}
                 />
@@ -81,7 +81,7 @@ const PasswordForm = () => {
                     type="password"
                     name="confirmNewPassword"
                     placeholder="Enter Confirm New Password"
-                    className="text-sm mt-1 outline-none w-full sm:w-96 bg-transparent"
+                    className="text-sm mt-1 outline-none w-full md:w-96 bg-transparent"
                     value={formData.newPassword}
                     onChange={handleValueChange}
                 />
@@ -95,7 +95,7 @@ const PasswordForm = () => {
                 variant="outline"
                 type="submit"
                 disabled={isLoading}
-                className="w-full sm:w-96 mt-6 h-12 bg-[#4F80E1] hover:bg-[#4F80E1] hover:text-white text-white"
+                className="w-full md:w-96 mt-6 h-12 bg-[#4F80E1] hover:bg-[#4F80E1] hover:text-white text-white"
             >
                 {isLoading ? (
                     <svg

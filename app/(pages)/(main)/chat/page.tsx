@@ -1,12 +1,12 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
 import Layout from '@/app/_components/Layout';
 import VendorDetails from './_components/VendorDetails';
 import Conversation from './_components/Conversation';
 import Message from './_components/Message';
 import { UserStore } from '@/store/userStore';
+import { getConversation, getMessages, sendMessage } from '@/app/service/chat';
 
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
@@ -36,32 +36,38 @@ const Chat = () => {
     }, [arrivalMessage]);
 
     useEffect(() => {
-        socket.current?.emit('addUser', user?.id!);
+        socket.current?.emit('addUser', user?._id);
         socket.current?.on('getUsers', (users: any) => console.log(users));
     }, []);
 
     useEffect(() => {
-        const getConversations = async () => {
+        const fetchConversations = async () => {
             try {
-                const res = await axios.get(
-                    `https://tradetrove-backend.onrender.com/api/v1/conversation/${user?.id!}`
+                const { status, message, data } = await getConversation(
+                    user?._id
                 );
-                setConversations(res.data.conversation);
+                if (status !== 200) {
+                    return;
+                }
+                setConversations(data);
             } catch (error) {
                 console.log(error);
             }
         };
-        getConversations();
-    }, []);
+        fetchConversations();
+    }, [user]);
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
                 if (currentChat) {
-                    const res = await axios.get(
-                        `https://tradetrove-backend.onrender.com/api/v1/message/${currentChat._id}`
+                    const { status, message, data } = await getMessages(
+                        currentChat._id
                     );
-                    setMessages(res.data);
+                    if (status !== 200) {
+                        return;
+                    }
+                    setMessages(data);
                 }
             } catch (error) {
                 console.log(error);
@@ -75,22 +81,22 @@ const Chat = () => {
     const handleSubmit = async () => {
         if (messageText && currentChat) {
             socket.current?.emit('sendMessage', {
-                senderId: user?.id!,
+                senderId: user?._id,
                 receiverId: currentChat.members.find(
-                    (memberId: string) => memberId !== user?.id
+                    (memberId: string) => memberId !== user?._id
                 ),
                 text: messageText,
             });
             try {
-                const res = await axios.post(
-                    'https://tradetrove-backend.onrender.com/api/v1/message/send',
-                    {
-                        conversationId: currentChat._id,
-                        sender: user?.id,
-                        text: messageText,
-                    }
-                );
-                setMessages([...messages, res.data]);
+                const { status, message, data } = await sendMessage({
+                    conversationId: currentChat._id,
+                    sender: user?._id,
+                    text: messageText,
+                });
+                if (status !== 200) {
+                    return;
+                }
+                setMessages([...messages, data]);
                 setMessageText('');
             } catch (error) {
                 console.log(error);
@@ -112,7 +118,7 @@ const Chat = () => {
                                 >
                                     <Conversation
                                         conversation={conversation}
-                                        currentUser={user?.id!}
+                                        currentUser={user?._id}
                                     />
                                 </div>
                             ))}
@@ -129,7 +135,7 @@ const Chat = () => {
                                             <Message
                                                 message={message}
                                                 own={
-                                                    message.sender === user?.id
+                                                    message.sender === user?._id
                                                 }
                                             />
                                         </div>
