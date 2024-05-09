@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProductProps } from '../interface/product';
 import Link from 'next/link';
 import Image from 'next/image';
+import Wishlist from './Wishlist';
 
 const ProductCard = ({ product }: { product: ProductProps }) => {
     return (
-        <Link href={`/product/${product._id}`}>
-            <div className="bg-gray-300 rounded-sm py-8 px-4">
-                {product.images && product.images.length > 0 && (
-                    <Image
-                        src={product.images[0]}
-                        alt="product_img"
-                        width={200}
-                        height={200}
-                        className="w-[150px] h-[200px] block m-auto"
-                    />
-                )}
+        <div className="">
+            <div className="bg-gray-300 rounded-sm py-8 px-4 group relative">
+                <Link href={`/product/${product._id}`}>
+                    {product.images && product.images.length > 0 && (
+                        <Image
+                            src={product.images[0]}
+                            alt="product_img"
+                            width={200}
+                            height={200}
+                            className="w-[150px] h-[200px] block m-auto"
+                        />
+                    )}
+                </Link>
+                <div className="absolute top-4 right-4 hidden z-50 group-hover:block transition duration-150">
+                    <Wishlist productId={product._id} />
+                </div>
             </div>
             <div className="mt-4">
                 <h3 className="text-xs font-medium text-gray-900 sm:text-sm md:text-base">
@@ -30,7 +36,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
                     </p>
                 </div>
             </div>
-        </Link>
+        </div>
     );
 };
 

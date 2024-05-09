@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import useCartStore from '@/store/cartStore';
 import TabsComponent from '@/app/_components/TabsComponent';
 import ProductDetailsSkeleton from '@/app/skeleton/ProductDetailsSkeleton';
+import Wishlist from '@/app/_components/Wishlist';
 
 const ProductDetails = ({ params }: { params: { productId: string } }) => {
     const [productDetails, setProductDetails] = useState<any>();
@@ -198,13 +199,22 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
                                                 </svg>
                                             </span>
                                         </div>
-                                        <Button
-                                            onClick={handleAddToCart}
-                                            disabled={!productInstock}
-                                            className="bg-[#4F80E1] text-white hover:bg-[#4F80E1] px-6 py-4 rounded-sm mt-4 w-64"
-                                        >
-                                            Add to cart
-                                        </Button>
+                                        <div className="flex gap-2 items-center">
+                                            <Button
+                                                onClick={handleAddToCart}
+                                                disabled={!productInstock}
+                                                className="bg-[#4F80E1] text-white hover:bg-[#4F80E1] px-6 py-4 rounded-sm mt-4 w-64"
+                                            >
+                                                Add to cart
+                                            </Button>
+                                            <div className="border px-4 pt-[9px] rounded-sm mt-4 h-10">
+                                                <Wishlist
+                                                    productId={
+                                                        productDetails._id
+                                                    }
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </>
                             )}

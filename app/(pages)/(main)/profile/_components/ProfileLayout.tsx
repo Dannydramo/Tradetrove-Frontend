@@ -9,9 +9,9 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <Layout>
             <section className="mt-6 text-sm">
-                <div className="bg-white rounded-md my-6 p-4 md:p-8 overflow-x-auto min-h-[80vh]">
+                <div className="bg-white rounded-md my-6 p-4 md:p-8 min-h-[80vh]">
                     <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row w-full">
-                        <div className="md:min-w-60 md:max-w-64 pr-8 flex flex-row md:flex-col md:space-y-6 font-semibold h-full">
+                        <div className=" overflow-x-auto md:min-w-60 md:max-w-64 pr-8 flex flex-row space-x-2 md:space-x-0 md:flex-col md:space-y-6 font-semibold h-full">
                             <Link
                                 href={'/profile/orders'}
                                 className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${

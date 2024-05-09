@@ -52,6 +52,25 @@ export const getVendorsByState = async (state: string) => {
     }
     return { status, message, data };
 };
+export const getVendorsByStateAndProduct = async (
+    state: string,
+    category: string
+) => {
+    try {
+        const response = await Axios({
+            url: `user/vendors/${state}?category=${category}`,
+            method: 'get',
+        });
+
+        status = 200;
+        message = response.message;
+        data = response.data;
+    } catch (err: any) {
+        status = err.response.status;
+        message = err.response.data.message;
+    }
+    return { status, message, data };
+};
 export const getVendorDetailsByBusinessName = async (businessName: string) => {
     try {
         const response = await Axios({

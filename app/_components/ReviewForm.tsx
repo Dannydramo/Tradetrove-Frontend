@@ -101,12 +101,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
                         </p>
                     </div>
                     <hr />
-                    <div className="my-4 text-sm underline">
-                        <p>
-                            <span>You are logged in as </span>
-                            <span>{user?.email}</span>
-                        </p>
-                    </div>
+                    {user && (
+                        <div className="my-4 text-sm underline">
+                            <p>
+                                <span>You are logged in as </span>
+                                <span>{user?.email}</span>
+                            </p>
+                        </div>
+                    )}
                     <form onSubmit={handleReviewSubmit}>
                         <div className="my-4">
                             <div className="flex my-4">

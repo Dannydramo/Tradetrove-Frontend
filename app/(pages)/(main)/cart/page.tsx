@@ -28,7 +28,6 @@ const Cart = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(true);
     const { user } = UserStore();
-    console.log(user);
 
     const fetchVendorDetails = async (vendorId: string) => {
         try {
@@ -213,7 +212,7 @@ const Cart = () => {
                                                 vendorDetails[vendorId]
                                                     ?.businessName
                                             }
-                                            : ${calculateTotalPrice(vendorId)}.
+                                            : ₦{calculateTotalPrice(vendorId)}.
                                         </TableCaption>
                                         <TableHeader>
                                             <TableRow>
@@ -253,7 +252,7 @@ const Cart = () => {
                                                             {product.name}
                                                         </TableCell>
                                                         <TableCell>
-                                                            ${product.price}
+                                                            ₦{product.price}
                                                         </TableCell>
                                                         <TableCell className="flex mt-3 space-x-4 items-center">
                                                             <span
@@ -316,7 +315,7 @@ const Cart = () => {
                                                             </span>
                                                         </TableCell>
                                                         <TableCell>
-                                                            $
+                                                            ₦
                                                             {product.price *
                                                                 product.quantity}
                                                         </TableCell>
@@ -336,7 +335,7 @@ const Cart = () => {
                                                                     1.5
                                                                 }
                                                                 stroke="currentColor"
-                                                                className="w-4 h-4"
+                                                                className="w-4 h-4 cursor-pointer"
                                                             >
                                                                 <path
                                                                     strokeLinecap="round"

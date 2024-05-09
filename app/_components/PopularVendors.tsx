@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import VendorsCard from './VendorsCard';
 import { getPopularVendors } from '../service/vendor';
-import { VendorProps } from '../interface/vendor';
 import ProductCardSkeleton from '../skeleton/ProductCardSkeleton';
 
 const PopularVendors = () => {
-    const [vendors, setVendors] = useState<VendorProps[]>([]);
+    const [vendors, setVendors] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchAllVendor = async () => {
@@ -36,7 +35,10 @@ const PopularVendors = () => {
                     {' '}
                     <div className="grid grid-cols-2 gap-8 my-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {vendors.map((vendor) => (
-                            <VendorsCard key={vendor?._id} vendor={vendor} />
+                            <VendorsCard
+                                key={vendor?._id}
+                                vendor={vendor.vendor}
+                            />
                         ))}
                     </div>
                 </>

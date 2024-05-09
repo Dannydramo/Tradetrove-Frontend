@@ -95,7 +95,7 @@ const OrderTable = () => {
 
                                 <TableCell>{order.paymentStatus}</TableCell>
                                 <TableCell>
-                                    ${order.totalPrice.toFixed(2)}
+                                    ₦{order.totalPrice.toFixed(2)}
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -103,12 +103,12 @@ const OrderTable = () => {
 
                     <TableFooter className="w-full">
                         <TableRow>
-                            <TableCell colSpan={8}>
+                            <TableCell colSpan={7}>
                                 Total Order Amount
                             </TableCell>
 
                             <TableCell>
-                                $
+                                ₦
                                 {orderData
                                     .reduce(
                                         (total, order) =>

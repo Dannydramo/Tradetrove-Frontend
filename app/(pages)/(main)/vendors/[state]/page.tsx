@@ -2,37 +2,78 @@
 import Layout from '@/app/_components/Layout';
 import VendorsCard from '@/app/_components/VendorsCard';
 import { VendorProps } from '@/app/interface/vendor';
-import { getVendorsByState } from '@/app/service/vendor';
+import {
+    getVendorsByState,
+    getVendorsByStateAndProduct,
+} from '@/app/service/vendor';
 import ProductCardSkeleton from '@/app/skeleton/ProductCardSkeleton';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+const options = ['mew', 'mewtwo', 'pikachu'];
 const Page = ({ params }: { params: { state: string } }) => {
     const [vendors, setVendors] = useState<VendorProps[]>([]);
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchAllVendor = async () => {
-            try {
-                const { status, message, data } = await getVendorsByState(
-                    params.state
-                );
-                if (status !== 200) {
-                    setLoading(false);
-                    return;
-                }
-                setVendors(data);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState('');
+    const fetchVendors = async () => {
+        try {
+            const state = params.state;
+            const category = searchParams.get('category');
+            const { status, message, data } = !category
+                ? await getVendorsByState(state)
+                : await getVendorsByStateAndProduct(state, category);
+            if (status !== 200) {
                 setLoading(false);
-            } catch (error) {
-                console.log('Error fetching vendor');
-                setLoading(false);
+                return;
             }
-        };
-        fetchAllVendor();
-    }, []);
+            setVendors(data);
+            setLoading(false);
+        } catch (error) {
+            console.log('Error fetching vendors:', error);
+            setLoading(false);
+        }
+    };
+
+    const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value.trim());
+    };
+
+    const searchButtonClicked = () => {
+        const current = new URLSearchParams(Array.from(searchParams.entries()));
+        if (!searchTerm) {
+            current.delete('category');
+        } else {
+            current.set('category', searchTerm);
+        }
+        const search = current.toString();
+        const query = search ? `?${search}` : '';
+        router.push(`${pathname}${query}`);
+        fetchVendors();
+    };
+    useEffect(() => {
+        fetchVendors();
+    }, [params.state, searchParams]);
 
     return (
         <Layout>
+            <div className="flex items-center mb-4">
+                <input
+                    type="text"
+                    placeholder="Search for a product..."
+                    onChange={onSearchChange}
+                    value={searchTerm}
+                    className="border border-gray-300 rounded-md px-3 py-2 mr-2"
+                />
+                <button
+                    onClick={searchButtonClicked}
+                    className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                >
+                    Search
+                </button>
+            </div>
             {!loading ? (
                 <>
                     {vendors.length === 0 ? (
@@ -65,5 +106,4 @@ const Page = ({ params }: { params: { state: string } }) => {
         </Layout>
     );
 };
-
 export default Page;

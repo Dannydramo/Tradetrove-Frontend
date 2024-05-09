@@ -12,7 +12,7 @@ export const getAllOrders = async () => {
             url: 'orders/',
             method: 'get',
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmI3MzcxZWI5ZjEzZDY1YjllMTMyYyIsImlhdCI6MTcxNDE3MTk3MCwiZXhwIjoxNzE0MjA3OTcwfQ.LvCQ63EjRtzqJ6mzRfBd1QjKKvprJS7xTGw7Ba_7Cls`,
+                Authorization: `Bearer ${token}`,
             },
         });
 

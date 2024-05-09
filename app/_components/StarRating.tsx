@@ -2,7 +2,6 @@ import React from 'react';
 
 const StarRating = ({ rating }: { rating: number }) => {
     const filledStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
 
     const starIcons = [];
 
