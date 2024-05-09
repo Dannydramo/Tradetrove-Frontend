@@ -20,22 +20,7 @@ export const getPopularVendors = async () => {
     }
     return { status, message, data };
 };
-export const getVendors = async () => {
-    try {
-        const response = await Axios({
-            url: 'vendor/get-vendors',
-            method: 'get',
-        });
 
-        status = 200;
-        message = response.message;
-        data = response.data;
-    } catch (err: any) {
-        status = err.response.status;
-        message = err.response.data.message;
-    }
-    return { status, message, data };
-};
 export const getVendorsByState = async (state: string) => {
     try {
         const response = await Axios({
