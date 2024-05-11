@@ -6,7 +6,7 @@ import VendorDetails from './_components/VendorDetails';
 import Conversation from './_components/Conversation';
 import Message from './_components/Message';
 import { UserStore } from '@/store/userStore';
-import { getConversation, getMessages, sendMessage } from '@/app/service/chat';
+import axios from 'axios';
 
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
@@ -38,36 +38,30 @@ const Chat = () => {
     useEffect(() => {
         socket.current?.emit('addUser', user?._id);
         socket.current?.on('getUsers', (users: any) => console.log(users));
-    }, []);
+    }, [user]);
 
     useEffect(() => {
-        const fetchConversations = async () => {
+        const getConversations = async () => {
             try {
-                const { status, message, data } = await getConversation(
-                    user?._id
+                const res = await axios.get(
+                    `https://tradetrove-backend.onrender.com/api/v1/conversation/${user?._id}`
                 );
-                if (status !== 200) {
-                    return;
-                }
-                setConversations(data);
+                setConversations(res.data.conversation);
             } catch (error) {
                 console.log(error);
             }
         };
-        fetchConversations();
+        getConversations();
     }, [user]);
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
                 if (currentChat) {
-                    const { status, message, data } = await getMessages(
-                        currentChat._id
+                    const res = await axios.get(
+                        `https://tradetrove-backend.onrender.com/api/v1/message/${currentChat._id}`
                     );
-                    if (status !== 200) {
-                        return;
-                    }
-                    setMessages(data);
+                    setMessages(res.data);
                 }
             } catch (error) {
                 console.log(error);
@@ -75,9 +69,11 @@ const Chat = () => {
         };
         fetchMessages();
     }, [currentChat, messages]);
+
     useEffect(() => {
-        scrollRef.current?.scrollIntoView({ behaviour: 'smooth' });
+        scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages]);
+
     const handleSubmit = async () => {
         if (messageText && currentChat) {
             socket.current?.emit('sendMessage', {
@@ -88,15 +84,15 @@ const Chat = () => {
                 text: messageText,
             });
             try {
-                const { status, message, data } = await sendMessage({
-                    conversationId: currentChat._id,
-                    sender: user?._id,
-                    text: messageText,
-                });
-                if (status !== 200) {
-                    return;
-                }
-                setMessages([...messages, data]);
+                const res = await axios.post(
+                    'https://tradetrove-backend.onrender.com/api/v1/message/send',
+                    {
+                        conversationId: currentChat._id,
+                        sender: user?._id,
+                        text: messageText,
+                    }
+                );
+                setMessages([...messages, res.data]);
                 setMessageText('');
             } catch (error) {
                 console.log(error);

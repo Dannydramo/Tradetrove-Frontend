@@ -129,6 +129,7 @@ const Cart = () => {
             if (status !== 200) {
                 return;
             }
+
             router.push('/chat');
         } catch (error) {
             console.error('Error starting conversation:', error);

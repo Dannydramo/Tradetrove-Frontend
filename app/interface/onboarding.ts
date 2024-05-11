@@ -13,3 +13,8 @@ export interface LoginProps {
 export interface ForgotPasswordProps {
     email: string;
 }
+
+export interface ResetPasswordProps {
+    password: string;
+    confirmPassword: string;
+}

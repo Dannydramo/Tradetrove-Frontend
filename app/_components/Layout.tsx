@@ -4,10 +4,12 @@ import { UserStore } from '@/store/userStore';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { getUserDetails } from '../service/onboarding';
+import { usePathname } from 'next/navigation';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const { totalProducts }: any = useCartStore();
     const { user, setUser } = UserStore();
+    const pathname = usePathname();
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
@@ -125,7 +127,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 </div>
             </nav>
             <main className="mt-2"> {children}</main>
-            <section className="py-10 sm:pt-16 lg:pt-24">
+            <section className={`py-10 sm:pt-16 lg:pt-24 ${pathname==='/chat'?'hidden':'block'}`}>
                 <div className="">
                     <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
                         <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
