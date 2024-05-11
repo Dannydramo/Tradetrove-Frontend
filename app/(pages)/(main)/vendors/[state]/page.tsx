@@ -59,13 +59,13 @@ const Page = ({ params }: { params: { state: string } }) => {
 
     return (
         <Layout>
-            <div className="flex items-center mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 justify-end mb-4">
                 <input
                     type="text"
                     placeholder="Search for a product..."
                     onChange={onSearchChange}
                     value={searchTerm}
-                    className="border border-gray-300 rounded-md px-3 py-2 mr-2"
+                    className="border border-gray-300 rounded-md px-3 py-2"
                 />
                 <button
                     onClick={searchButtonClicked}

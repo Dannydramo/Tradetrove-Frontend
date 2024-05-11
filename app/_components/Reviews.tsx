@@ -27,7 +27,7 @@ const Reviews = ({ productId }: { productId: string }) => {
             }
         };
         fetchProductReviews();
-    }, [productId]);
+    }, [productId, reviews]);
     const formatDateToWords = (dateString: string) => {
         const date = new Date(dateString);
         return date.toLocaleDateString('en-US', {
@@ -104,6 +104,7 @@ const Reviews = ({ productId }: { productId: string }) => {
                 <ReviewForm
                     setShowReviewForm={setShowReviewForm}
                     productId={productId}
+                    setReviews={setReviews}
                 />
             )}
         </div>

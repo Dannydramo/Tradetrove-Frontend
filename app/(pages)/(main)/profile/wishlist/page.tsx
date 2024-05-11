@@ -49,11 +49,12 @@ const page = () => {
     return (
         <ProfileLayout>
             {wishlistData.length > 0 ? (
-                <>
+                <div className="w-full">
+                    {' '}
                     {wishlistData.map((wishlist) => (
                         <div
                             key={wishlist._id}
-                            className="flex space-x-6 justify-between items-center h-fit pb-4 w-full lg:w-[60%] xl:w-[50%] odd:border-b"
+                            className="flex space-x-6 justify-between items-center h-fit pb-4 w-full lg:w-[90%] xl:w-[70%] even:mt-4 odd:border-b"
                         >
                             <div className="flex gap-6 items-center">
                                 <div className="bg-gray-200 p-4 rounded-sm w-fit relative">
@@ -126,7 +127,7 @@ const page = () => {
                             </div>
                         </div>
                     ))}
-                </>
+                </div>
             ) : (
                 <>
                     {' '}

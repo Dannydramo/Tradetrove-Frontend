@@ -125,7 +125,7 @@ const ProductDetails = ({ params }: { params: { productId: string } }) => {
                                                                 src={image}
                                                                 height={500}
                                                                 width={500}
-                                                                className="h-full w-full"
+                                                                className="h-full w-full rounded-xl"
                                                                 alt={`Product Image ${index}`}
                                                             />
                                                         </div>

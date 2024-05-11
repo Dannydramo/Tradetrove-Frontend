@@ -7,11 +7,13 @@ import { getProductReviews, postReview } from '../service/review';
 interface ReviewFormProps {
     setShowReviewForm: React.Dispatch<React.SetStateAction<boolean>>;
     productId: string;
+    setReviews: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const ReviewForm: React.FC<ReviewFormProps> = ({
     setShowReviewForm,
     productId,
+    setReviews,
 }) => {
     const [clickedStars, setClickedStars] = useState(new Array(5).fill(false));
     const [formData, setFormData] = useState({
@@ -61,8 +63,19 @@ const ReviewForm: React.FC<ReviewFormProps> = ({
             }
             setLoading(false);
             toast.success(message);
-            getProductReviews(productId);
+
             setShowReviewForm(false);
+            try {
+                const { status, message, data } = await getProductReviews(
+                    productId
+                );
+                if (status !== 200) {
+                    return;
+                }
+                setReviews(data);
+            } catch (error) {
+                console.log('Error fetching review');
+            }
         } catch (error) {
             toast.error('Unable to submit review.Please try again later.');
         }
