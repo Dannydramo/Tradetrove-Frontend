@@ -2,10 +2,16 @@
 import Layout from '@/app/_components/Layout';
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { deleteCookie } from 'cookies-next';
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
+    const router = useRouter();
+    const handleLogout = () => {
+        deleteCookie('token');
+        router.replace('/login');
+    };
     return (
         <Layout>
             <section className="mt-6 text-sm">
@@ -112,6 +118,30 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                                 </span>
                                 <span> Account Detail</span>
                             </Link>
+                            <div
+                                className={`flex items-center cursor-pointer font-medium text-xs sm:text-sm md:text-base space-x-2 px-6 py-3 rounded-md`}
+                                onClick={handleLogout}
+                            >
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="18"
+                                        height="18"
+                                        viewBox="0 0 18 18"
+                                        fill="none"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            id="Vector"
+                                            d="M11.8571 13V15.2857C11.8571 15.5888 11.7367 15.8796 11.5224 16.0938C11.3081 16.3081 11.0174 16.4286 10.7143 16.4286H2.71427C2.41116 16.4286 2.12047 16.3081 1.90615 16.0938C1.69182 15.8796 1.57141 15.5888 1.57141 15.2857V2.7143C1.57141 2.41119 1.69182 2.1205 1.90615 1.90618C2.12047 1.69185 2.41116 1.57144 2.71427 1.57144H10.7143C11.0174 1.57144 11.3081 1.69185 11.5224 1.90618C11.7367 2.1205 11.8571 2.41119 11.8571 2.7143V5.00001M8.42855 9.00001H16.4286M16.4286 9.00001L14.1428 6.7143M16.4286 9.00001L14.1428 11.2857"
+                                            stroke-width="1.43"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        ></path>
+                                    </svg>
+                                </span>
+                                <span> Logout</span>
+                            </div>
                         </div>
                         <hr className="h-full" />
                         {children}

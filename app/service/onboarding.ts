@@ -1,5 +1,6 @@
 import { Axios } from '../helpers/axiosHelper';
 import {
+    ChangePasswordProps,
     ForgotPasswordProps,
     LoginProps,
     RegisterProps,
@@ -91,6 +92,28 @@ export const resetPassword = async (
         message = err.response.data.message;
     }
     return { status, message, data };
+};
+
+export const changePassword = async (payload: ChangePasswordProps) => {
+    const token = getCookie('token');
+    try {
+        const response = await Axios({
+            url: 'user/auth/change-password',
+            method: 'patch',
+            body: payload,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        status = 200;
+        message = response.message;
+        data = response.data;
+    } catch (err: any) {
+        status = err.response.status;
+        message = err.response.data.message;
+    }
+    return { status, message };
 };
 
 export const getUserDetails = async () => {

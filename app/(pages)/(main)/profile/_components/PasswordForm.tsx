@@ -4,14 +4,16 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import React, { ChangeEvent, ChangeEventHandler, useState } from 'react';
 import { changePasswordValidationSchema } from '@/app/validators/onboarding';
+import { toast } from 'sonner';
+import { ChangePasswordProps } from '@/app/interface/onboarding';
+import { changePassword } from '@/app/service/onboarding';
 const PasswordForm = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<ChangePasswordProps>({
         password: '',
         newPassword: '',
         confirmNewPassword: '',
     });
     const [isLoading, setIsLoading] = useState(false);
-    // const router = useRouter();
 
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -30,6 +32,28 @@ const PasswordForm = () => {
             .validate(formData, { abortEarly: false })
             .then(async () => {
                 setErrors({});
+                try {
+                    setIsLoading(true);
+                    const { status, message } = await changePassword(formData);
+                    if (status !== 200) {
+                        setIsLoading(false);
+                        toast.error(message);
+                        return;
+                    }
+                    toast.success(message);
+                    setIsLoading(false);
+                    setFormData({
+                        password: '',
+                        newPassword: '',
+                        confirmNewPassword: '',
+                    });
+                } catch (error) {
+                    setIsLoading(false);
+                    toast.error(
+                        'Unable to change password. Please chack your internet connection and try again.'
+                    );
+                    return;
+                }
             })
             .catch((validationErrors) => {
                 const errorsObj: { [key: string]: string } = {};
@@ -82,7 +106,7 @@ const PasswordForm = () => {
                     name="confirmNewPassword"
                     placeholder="Enter Confirm New Password"
                     className="text-sm mt-1 outline-none w-full md:w-96 bg-transparent"
-                    value={formData.newPassword}
+                    value={formData.confirmNewPassword}
                     onChange={handleValueChange}
                 />
                 {errors.confirmNewPassword && (

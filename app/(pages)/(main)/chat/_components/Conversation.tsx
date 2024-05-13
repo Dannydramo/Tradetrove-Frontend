@@ -35,10 +35,12 @@ const Conversation = ({
                             src={vendor.logo}
                             width={50}
                             height={50}
-                            className="w-[40px] h-[40px] rounded-full"
+                            className="w-[40px] h-[40px] rounded-[95%] sm:rounded-full"
                             alt={vendor?.businessName}
                         />
-                        <p className="text-medium">{vendor.businessName}</p>
+                        <p className="text-medium truncate">
+                            {vendor.businessName}
+                        </p>
                     </div>
                 )}
             </div>

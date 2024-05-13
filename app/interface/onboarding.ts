@@ -18,3 +18,9 @@ export interface ResetPasswordProps {
     password: string;
     confirmPassword: string;
 }
+
+export interface ChangePasswordProps {
+    password: string;
+    newPassword: string;
+    confirmNewPassword: string;
+}
