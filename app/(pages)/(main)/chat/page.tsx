@@ -363,11 +363,18 @@ const Chat = () => {
                         )}
                     </div>
                 </div>
-                <div className="chatDetails hidden md:block">
-                    <div className="p-4 h-[100%] bg-white rounded-md">
-                        <VendorDetails />
+                {currentChat && (
+                    <div className="chatDetails hidden md:block">
+                        <div className="p-4 h-[100%] bg-white rounded-md">
+                            {user && (
+                                <VendorDetails
+                                    currentChat={currentChat}
+                                    currentUser={user?._id}
+                                />
+                            )}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </Layout>
     );
