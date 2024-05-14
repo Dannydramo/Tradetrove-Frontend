@@ -28,7 +28,7 @@ const Conversation = ({
     }, []);
     return (
         <>
-            <div className="m-4">
+            <div className="m-4 cursor-pointer">
                 {vendor && (
                     <div className="flex items-center text-sm gap-2">
                         <Image

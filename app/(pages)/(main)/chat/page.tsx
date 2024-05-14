@@ -7,6 +7,7 @@ import Conversation from './_components/Conversation';
 import Message from './_components/Message';
 import { UserStore } from '@/store/userStore';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
@@ -17,7 +18,10 @@ const Chat = () => {
     const socket = useRef<Socket | undefined>();
     const scrollRef = useRef<any>();
     const { user } = UserStore();
-
+    const router = useRouter();
+    useEffect(() => {
+        router.refresh();
+    }, []);
     useEffect(() => {
         socket.current = io('https://tradetrove-backend.onrender.com');
         socket.current?.on('getMessage', (data) => {
