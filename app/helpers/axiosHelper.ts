@@ -15,14 +15,14 @@ export const Axios = async ({
     method,
     body,
     headers,
-    withCredentials,
+    withCredentials = true,
 }: AxiosOptions) => {
     const res = await axios({
         method: method,
         url: url,
         data: body,
         headers: headers,
-        withCredentials: withCredentials || false,
+        withCredentials: withCredentials,
     });
     return res.data;
 };
