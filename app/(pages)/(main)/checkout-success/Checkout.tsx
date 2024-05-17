@@ -2,9 +2,8 @@
 import { getRecentOrder } from '@/app/service/orders';
 import useCartStore from '@/store/cartStore';
 import { useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
-
-const CheckOutSuccess = () => {
+import { useState, useEffect } from 'react';
+const Checkout = () => {
     const searchParams = useSearchParams();
     const { clearVendorCart }: any = useCartStore();
     const [recentOrder, setRecentOrder] = useState();
@@ -27,7 +26,7 @@ const CheckOutSuccess = () => {
         };
         fetchUserRecentOrder();
     }, []);
-    return <div>CheckOutSuccess</div>;
+    return <div>Checkout</div>;
 };
 
-export default CheckOutSuccess;
+export default Checkout;
