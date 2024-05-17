@@ -25,3 +25,24 @@ export const getAllOrders = async () => {
     }
     return { status, message, data };
 };
+
+export const getRecentOrder = async (vendorId: string) => {
+    const token = getCookie('token');
+    try {
+        const response = await Axios({
+            url: `orders/user-recent-order?vendorId=${vendorId}`,
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        status = 200;
+        message = response.message;
+        data = response.data;
+    } catch (err: any) {
+        status = err.response.status;
+        message = err.response.data.message;
+    }
+    return { status, message, data };
+};

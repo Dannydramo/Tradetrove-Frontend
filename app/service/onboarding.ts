@@ -40,15 +40,19 @@ export const loginUser = async (payload: LoginProps) => {
             url: 'user/auth/login',
             method: 'post',
             body: payload,
+            withCredentials: false,
         });
 
         status = 200;
         message = response.message;
         data = response.data.user;
-        setCookie('token', response.token, {
-            secure: true,
-            maxAge: 60 * 6 * 24,
-        });
+        // setCookie('token', response.token, {
+        //     secure: true,
+        //     httpOnly: true,
+        //     partitioned: true,
+        //     sameSite:''
+        //     maxAge: 60 * 6 * 24,
+        // });
     } catch (err: any) {
         status = err.response.status;
         message = err.response.data.message;
@@ -125,6 +129,7 @@ export const getUserDetails = async () => {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
+            withCredentials: true,
         });
 
         status = 200;

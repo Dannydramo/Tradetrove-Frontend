@@ -10,7 +10,6 @@ import ProductCardSkeleton from '@/app/skeleton/ProductCardSkeleton';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-const options = ['mew', 'mewtwo', 'pikachu'];
 const Page = ({ params }: { params: { state: string } }) => {
     const [vendors, setVendors] = useState<VendorProps[]>([]);
     const [loading, setLoading] = useState(true);

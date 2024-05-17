@@ -22,8 +22,7 @@ import { UserStore } from '@/store/userStore';
 import Link from 'next/link';
 
 const Cart = () => {
-    const { cart, addToCart, removeFromCart, clearVendorCart }: any =
-        useCartStore();
+    const { cart, addToCart, removeFromCart }: any = useCartStore();
     const [vendorDetails, setVendorDetails] = useState<any>({});
     const router = useRouter();
     const [loading, setLoading] = useState(true);
