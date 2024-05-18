@@ -7,7 +7,7 @@ interface AxiosOptions {
     headers?: object | undefined;
 }
 
-axios.defaults.baseURL = process.env.NEXT_BASE_URL;
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_APP_API_URL;
 axios.defaults.withCredentials = true;
 
 export const Axios = async ({ url, method, body, headers }: AxiosOptions) => {
