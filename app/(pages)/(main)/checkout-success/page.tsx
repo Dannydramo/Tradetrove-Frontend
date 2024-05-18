@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import Checkout from './Checkout';
+import Layout from '@/app/_components/Layout';
 
 const CheckOutSuccess = () => {
     return (
-        <div>
+        <Layout>
             <Checkout />
-        </div>
+        </Layout>
     );
 };
 
