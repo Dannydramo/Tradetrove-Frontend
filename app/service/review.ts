@@ -10,7 +10,6 @@ export const getProductReviews = async (productId: string) => {
         const response = await Axios({
             url: `/review/get/${productId}`,
             method: 'get',
-            withCredentials: false,
         });
 
         status = 200;

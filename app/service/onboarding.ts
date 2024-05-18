@@ -6,7 +6,6 @@ import {
     RegisterProps,
     ResetPasswordProps,
 } from '../interface/onboarding';
-import { getCookie, setCookie } from 'cookies-next';
 
 let status: number;
 let message: string;
@@ -23,10 +22,6 @@ export const signupUser = async (payload: RegisterProps) => {
         status = 200;
         message = response.message;
         data = response.data.user;
-        setCookie('token', response.token, {
-            secure: true,
-            maxAge: 60 * 6 * 24,
-        });
     } catch (err: any) {
         status = err.response.status;
         message = err.response.data.message;
@@ -40,24 +35,33 @@ export const loginUser = async (payload: LoginProps) => {
             url: 'user/auth/login',
             method: 'post',
             body: payload,
-            withCredentials: false,
         });
 
         status = 200;
         message = response.message;
         data = response.data.user;
-        // setCookie('token', response.token, {
-        //     secure: true,
-        //     httpOnly: true,
-        //     partitioned: true,
-        //     sameSite:''
-        //     maxAge: 60 * 6 * 24,
-        // });
     } catch (err: any) {
         status = err.response.status;
         message = err.response.data.message;
     }
     return { status, message, data };
+};
+
+export const logoutUser = async () => {
+    try {
+        const response = await Axios({
+            url: 'user/auth/logout',
+            method: 'get',
+        });
+
+        status = 200;
+        message = response.message;
+        data = response.data;
+    } catch (err: any) {
+        status = err.response.status;
+        message = err.response.data.message;
+    }
+    return { status, message };
 };
 
 export const forgotPassword = async (payload: ForgotPasswordProps) => {
@@ -99,15 +103,11 @@ export const resetPassword = async (
 };
 
 export const changePassword = async (payload: ChangePasswordProps) => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: 'user/auth/change-password',
             method: 'patch',
             body: payload,
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
         });
 
         status = 200;
@@ -121,15 +121,10 @@ export const changePassword = async (payload: ChangePasswordProps) => {
 };
 
 export const getUserDetails = async () => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: 'user/details',
             method: 'get',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            withCredentials: true,
         });
 
         status = 200;
