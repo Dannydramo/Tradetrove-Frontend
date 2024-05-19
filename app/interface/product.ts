@@ -1,11 +1,12 @@
 export interface ProductProps {
+    quantity: string;
     _id: string;
     productName: string;
     description: string;
     category: string;
-    price: string;
+    price: number;
     inStock: boolean;
-    images?: string[];
+    images: string[];
 }
 
 export interface CartProductProps {

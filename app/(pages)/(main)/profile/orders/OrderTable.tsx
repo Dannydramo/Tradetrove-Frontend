@@ -25,6 +25,7 @@ const OrderTable = () => {
                     console.log(message);
                     return;
                 }
+                console.log(data);
 
                 setOrderData(data);
             } catch (error) {
@@ -47,27 +48,20 @@ const OrderTable = () => {
                             <TableHead>Product Image</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Quantity</TableHead>
-
                             <TableHead>Status</TableHead>
                             <TableHead>Total Amount</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {orderData.map((order, index) => (
-                            <TableRow key={order._id}>
-                                <TableCell>{index + 1}</TableCell>
-                                <TableCell className="font-medium">
-                                    {order.vendor.businessName}
-                                </TableCell>
-                                <TableCell>
-                                    {order.products.map((product) => (
-                                        <div key={product._id}>
-                                            {product.productName}
-                                        </div>
-                                    ))}
-                                </TableCell>
-                                <TableCell>
-                                    {order.products.map((product: any) => (
+                        {orderData.map((order, orderIndex) =>
+                            order.products.map((product, productIndex) => (
+                                <TableRow key={`${order._id}-${product._id}`}>
+                                    <TableCell>{orderIndex + 1}</TableCell>
+                                    <TableCell className="font-medium">
+                                        {order.vendor.businessName}
+                                    </TableCell>
+                                    <TableCell>{product.productName}</TableCell>
+                                    <TableCell>
                                         <Image
                                             src={product.images[0]}
                                             alt={product.productName}
@@ -75,30 +69,28 @@ const OrderTable = () => {
                                             height={50}
                                             className="w-[40px] h-[40px] rounded-full"
                                         />
-                                    ))}
-                                </TableCell>
-                                <TableCell>
-                                    {order.products.map((product) => (
-                                        <div key={product._id}>
-                                            {product.price}
-                                        </div>
-                                    ))}
-                                </TableCell>
-                                <TableCell>
-                                    {' '}
-                                    {order.products.map((product: any) => (
-                                        <div key={product._id}>
-                                            {order.totalPrice / product.price}
-                                        </div>
-                                    ))}
-                                </TableCell>
-
-                                <TableCell>{order.paymentStatus}</TableCell>
-                                <TableCell>
-                                    ₦{order.totalPrice.toFixed(2)}
-                                </TableCell>
-                            </TableRow>
-                        ))}
+                                    </TableCell>
+                                    <TableCell> ₦{product.price}</TableCell>
+                                    <TableCell>
+                                        {order.totalPrice / product.price}
+                                    </TableCell>
+                                    {productIndex === 0 && (
+                                        <>
+                                            <TableCell
+                                                rowSpan={order.products.length}
+                                            >
+                                                {order.paymentStatus}
+                                            </TableCell>
+                                            <TableCell
+                                                rowSpan={order.products.length}
+                                            >
+                                                ₦{order.totalPrice.toFixed(2)}
+                                            </TableCell>
+                                        </>
+                                    )}
+                                </TableRow>
+                            ))
+                        )}
                     </TableBody>
 
                     <TableFooter className="w-full">
