@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+
 const Checkout = () => {
     const searchParams = useSearchParams();
     const { clearVendorCart }: any = useCartStore();
@@ -14,14 +15,13 @@ const Checkout = () => {
     useEffect(() => {
         const vendorId = searchParams.get('vendorId');
         clearVendorCart(vendorId);
-    }, []);
+    }, [searchParams, clearVendorCart]);
+
     return (
-        <Suspense>
-            {' '}
+        <Suspense fallback={<div>Loading...</div>}>
             <div>
                 <div className="text-center mx-auto mt-12">
                     <div className="mb-8">
-                        {' '}
                         <Image
                             src={'/successful-payment.svg'}
                             alt="Successful Payment"
