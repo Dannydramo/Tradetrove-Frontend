@@ -24,11 +24,15 @@ export const generateMetadata = async ({
     }
 
     return {
+        metadataBase: new URL('https://tradetrove.vercel.app'),
         title: `${data.businessName}`,
         description: data.description,
-        openGraph: {
-            title: `${data.businessName}`,
-            description: data.description,
+        twitter: {
+            card: 'summary_large_image',
+            title: 'Tradetrove',
+            description:
+                'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
+            url: 'https://tradetrove.vercel.app',
             images: [
                 {
                     url: data.logo,
@@ -37,6 +41,21 @@ export const generateMetadata = async ({
                     alt: `${data.businessName} Logo`,
                 },
             ],
+        },
+        openGraph: {
+            title: `${data.businessName}`,
+            description: data.description,
+            url: 'https://tradetrove.vercel.app',
+            images: [
+                {
+                    url: data.logo,
+                    width: 800,
+                    height: 600,
+                    alt: `${data.businessName} Logo`,
+                },
+            ],
+            locale: 'en_US',
+            type: 'website',
         },
     };
 };

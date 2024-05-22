@@ -18,11 +18,14 @@ export async function generateMetadata({
     }
 
     return {
+        metadataBase: new URL('https://tradetrove.vercel.app'),
         title: productDetails.productName,
         description: productDetails.description,
-        openGraph: {
-            title: productDetails.productName,
-            description: productDetails.description,
+        twitter: {
+            card: 'summary_large_image',
+            title: 'Tradetrove',
+            description:
+                'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
             images: [
                 {
                     url: productDetails.images[0],
@@ -31,6 +34,21 @@ export async function generateMetadata({
                     alt: productDetails.productName,
                 },
             ],
+        },
+        openGraph: {
+            title: productDetails.productName,
+            description: productDetails.description,
+            url: 'https://tradetrove.vercel.app',
+            images: [
+                {
+                    url: productDetails.images[0],
+                    width: 800,
+                    height: 600,
+                    alt: productDetails.productName,
+                },
+            ],
+            locale: 'en_US',
+            type: 'website',
         },
     };
 }
