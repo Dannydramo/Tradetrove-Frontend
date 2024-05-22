@@ -1,21 +1,23 @@
 import Layout from '@/app/_components/Layout';
 import { getProductDetails } from '@/app/service/product';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import ProductComponent from './ProductComponent';
 
 export async function generateMetadata({
     params,
+    parent,
 }: {
     params: { productId: string };
+    parent: ResolvingMetadata;
 }): Promise<Metadata> {
     const { data: productDetails } = await getProductDetails(params.productId);
-
     if (!productDetails) {
         return {
             title: 'Product Not Found',
             description: 'The product you are looking for does not exist.',
         };
     }
+    const previousImages = (await parent).openGraph?.images || [];
 
     return {
         metadataBase: new URL('https://tradetrove.vercel.app'),
@@ -40,6 +42,7 @@ export async function generateMetadata({
             description: productDetails.description,
             url: 'https://tradetrove.vercel.app',
             images: [
+                ...previousImages,
                 {
                     url: productDetails.images[0],
                     width: 800,

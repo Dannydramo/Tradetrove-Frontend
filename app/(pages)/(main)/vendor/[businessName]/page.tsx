@@ -4,11 +4,13 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import VendorProducts from '@/app/_components/VendorProducts';
 
-export const generateMetadata = async ({
+export async function generateMetadata({
     params,
+    parent,
 }: {
     params: { businessName: string };
-}) => {
+    parent: ResolvingMetadata;
+}): Promise<Metadata> {
     const { businessName } = params;
     const { status, data } = await getVendorDetailsByBusinessName(businessName);
 
@@ -22,7 +24,7 @@ export const generateMetadata = async ({
             },
         };
     }
-
+    const previousImages = (await parent).openGraph?.images || [];
     return {
         metadataBase: new URL('https://tradetrove.vercel.app'),
         title: `${data.businessName}`,
@@ -32,8 +34,9 @@ export const generateMetadata = async ({
             title: 'Tradetrove',
             description:
                 'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
-            url: 'https://tradetrove.vercel.app',
+
             images: [
+                ...previousImages,
                 {
                     url: data.logo,
                     width: 800,
@@ -58,7 +61,7 @@ export const generateMetadata = async ({
             type: 'website',
         },
     };
-};
+}
 
 export default async function VendorDetailsPage({
     params,
