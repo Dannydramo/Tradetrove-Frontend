@@ -4,64 +4,64 @@ import type { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import VendorProducts from '@/app/_components/VendorProducts';
 
-export async function generateMetadata({
-    params,
-    parent,
-}: {
-    params: { businessName: string };
-    parent: ResolvingMetadata;
-}): Promise<Metadata> {
-    const { businessName } = params;
-    const { status, data } = await getVendorDetailsByBusinessName(businessName);
+// export async function generateMetadata({
+//     params,
+//     parent,
+// }: {
+//     params: { businessName: string };
+//     parent: ResolvingMetadata;
+// }): Promise<Metadata> {
+//     const { businessName } = params;
+//     const { status, data } = await getVendorDetailsByBusinessName(businessName);
 
-    if (status !== 200) {
-        return {
-            title: 'Vendor Not Found',
-            description: 'No vendor found with the specified business name',
-            openGraph: {
-                title: 'Vendor Not Found',
-                description: 'No vendor found with the specified business name',
-            },
-        };
-    }
-    const previousImages = (await parent).openGraph?.images || [];
-    return {
-        metadataBase: new URL('https://tradetrove.vercel.app'),
-        title: `${data.businessName}`,
-        description: data.description,
-        twitter: {
-            card: 'summary_large_image',
-            title: 'Tradetrove',
-            description:
-                'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
+//     if (status !== 200) {
+//         return {
+//             title: 'Vendor Not Found',
+//             description: 'No vendor found with the specified business name',
+//             openGraph: {
+//                 title: 'Vendor Not Found',
+//                 description: 'No vendor found with the specified business name',
+//             },
+//         };
+//     }
+//     const previousImages = (await parent).openGraph?.images || [];
+//     return {
+//         metadataBase: new URL('https://tradetrove.vercel.app'),
+//         title: `${data.businessName}`,
+//         description: data.description,
+//         twitter: {
+//             card: 'summary_large_image',
+//             title: 'Tradetrove',
+//             description:
+//                 'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
 
-            images: [
-                ...previousImages,
-                {
-                    url: data.logo,
-                    width: 800,
-                    height: 600,
-                    alt: `${data.businessName} Logo`,
-                },
-            ],
-        },
-        openGraph: {
-            title: `${data.businessName}`,
-            description: data.description,
-            url: 'https://tradetrove.vercel.app',
-            images: [
-                {
-                    url: data.logo,
-                    width: 800,
-                    height: 600,
-                    alt: `${data.businessName} Logo`,
-                },
-            ],
-            locale: 'en_US',
-            type: 'website',
-        },
-    };
-}
+//             images: [
+//                 ...previousImages,
+//                 {
+//                     url: data.logo,
+//                     width: 800,
+//                     height: 600,
+//                     alt: `${data.businessName} Logo`,
+//                 },
+//             ],
+//         },
+//         openGraph: {
+//             title: `${data.businessName}`,
+//             description: data.description,
+//             url: 'https://tradetrove.vercel.app',
+//             images: [
+//                 {
+//                     url: data.logo,
+//                     width: 800,
+//                     height: 600,
+//                     alt: `${data.businessName} Logo`,
+//                 },
+//             ],
+//             locale: 'en_US',
+//             type: 'website',
+//         },
+//     };
+// }
 
 export default async function VendorDetailsPage({
     params,
