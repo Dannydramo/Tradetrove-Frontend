@@ -10,15 +10,20 @@ export async function generateMetadata({
     params: { productId: string };
     parent: ResolvingMetadata;
 }): Promise<Metadata> {
-    const { data: productDetails } = await getProductDetails(params.productId);
-    if (!productDetails) {
+    const { productId } = params;
+    const { status, data: productDetails } = await getProductDetails(productId);
+    if (status !== 200) {
         return {
             title: 'Product Not Found',
             description: 'The product you are looking for does not exist.',
+
+            openGraph: {
+                title: 'Product Not Found',
+                description: 'The product you are looking for does not exist.',
+            },
         };
     }
     const previousImages = (await parent).openGraph?.images || [];
-
     return {
         metadataBase: new URL('https://tradetrove.vercel.app'),
         title: productDetails.productName,
