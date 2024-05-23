@@ -5,7 +5,7 @@ import LoginForm from './LoginForm';
 const Login = () => {
     return (
         <div className="bg-[#F6F8FF] min-h-screen">
-            <div className="">
+            <div className="w-[90%] mx-auto max-w-[1600px]">
                 <div className="pl-4 py-6 flex space-x-2 text-[#4F80E1]">
                     <div className="relative">
                         <svg
