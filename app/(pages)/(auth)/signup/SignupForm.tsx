@@ -14,6 +14,7 @@ import * as Yup from 'yup';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { signupUser } from '@/app/service/onboarding';
+import { setCookie } from 'cookies-next';
 
 const SignupForm = () => {
     const [formData, setFormData] = useState<RegisterProps>({
@@ -57,6 +58,10 @@ const SignupForm = () => {
                 }
                 toast.success(message);
                 setIsLoading(false);
+                setCookie('isLoggedIn', 'true', {
+                    maxAge: 30 * 24 * 60 * 60,
+                    path: '/',
+                });
                 router.replace('/');
             } catch (error) {
                 toast.error('Unable to process form submission');

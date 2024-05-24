@@ -16,6 +16,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
             return;
         }
         toast.success(message);
+        deleteCookie('isLoggedIn');
         router.replace('/login');
     };
     return (

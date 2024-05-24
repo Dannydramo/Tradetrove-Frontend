@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import ReviewForm from './ReviewForm';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import StarRating from './StarRating';
+import { UserStore } from '@/store/userStore';
 
 const Reviews = ({ productId }: { productId: string }) => {
     const [reviews, setReviews] = useState<any[]>([]);
@@ -12,6 +13,7 @@ const Reviews = ({ productId }: { productId: string }) => {
     const toggleReviewForm = () => {
         setShowReviewForm(true);
     };
+    const { user } = UserStore();
     useEffect(() => {
         const fetchProductReviews = async () => {
             try {
@@ -39,7 +41,7 @@ const Reviews = ({ productId }: { productId: string }) => {
     return (
         <div>
             <p>Reviews</p>
-            {reviews.length > 0 && (
+            {reviews.length > 0 && user && (
                 <Button
                     className="mt-4 bg-transparent text-black border py-4 px-6 hover:bg-transparent"
                     onClick={toggleReviewForm}

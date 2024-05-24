@@ -3,7 +3,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { loginValidationSchema } from '@/app/validators/onboarding';
-
 import React, {
     ChangeEvent,
     ChangeEventHandler,
@@ -16,6 +15,7 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { loginUser } from '@/app/service/onboarding';
+import { setCookie } from 'cookies-next';
 
 const LoginForm = () => {
     const [formData, setFormData] = useState<LoginProps>({
@@ -55,6 +55,10 @@ const LoginForm = () => {
                 }
                 toast.success(message);
                 setIsLoading(false);
+                setCookie('isLoggedIn', 'true', {
+                    maxAge: 30 * 24 * 60 * 60,
+                    path: '/',
+                });
                 router.replace('/');
             } catch (error) {
                 toast.error('Unable to process form submission');
