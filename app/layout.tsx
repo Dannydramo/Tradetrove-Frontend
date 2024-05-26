@@ -15,7 +15,6 @@ export const metadata: Metadata = {
         title: 'Tradetrove',
         description:
             'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
-        images: ['https://tradetrove.vercel.app/og-image.png'],
     },
 };
 
