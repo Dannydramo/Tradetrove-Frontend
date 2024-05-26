@@ -17,23 +17,6 @@ export const metadata: Metadata = {
             'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
         images: ['https://tradetrove.vercel.app/og-image.png'],
     },
-    openGraph: {
-        title: 'Tradetrove',
-        description:
-            'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
-        url: 'https://tradetrove.vercel.app',
-        siteName: 'Tradetrove',
-        images: [
-            {
-                url: 'https://tradetrove.vercel.app/og-image.png',
-                width: 800,
-                height: 600,
-                alt: 'Tradetrove - Unique and valuable items',
-            },
-        ],
-        locale: 'en_US',
-        type: 'website',
-    },
 };
 
 export default function RootLayout({
