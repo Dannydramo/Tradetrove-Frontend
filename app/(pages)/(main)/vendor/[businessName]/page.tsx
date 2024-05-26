@@ -84,15 +84,15 @@ export default async function VendorDetailsPage({
     return (
         <Layout>
             <div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-6">
-                    <div>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-6">
+                    <div className="lg:w-[40%] xl:w-[30%]">
                         {vendorDetails.logo && (
                             <Image
                                 src={vendorDetails.logo}
                                 alt={`${vendorDetails.businessName} logo`}
                                 width={200}
                                 height={200}
-                                className="h-[100px] w-[100px] md:h-[200px] rounded-full md:w-[200px]"
+                                className="h-[100px] w-[100px] lg:w-[150px] lg:h-[150px] xl:h-[200px] rounded-full  xl:w-[200px]"
                             />
                         )}
                     </div>

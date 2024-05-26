@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 const VendorsCard = ({ vendor }: { vendor: VendorProps }) => {
     return (
-        <Link href={`/vendor/${vendor.businessName}`}>
+        <Link href={`/vendor/${vendor?.businessName}`}>
             <div className="bg-gray-200 rounded-sm py-8 px-2 sm:px-4">
                 <Image
-                    src={vendor?.logo}
+                    src={vendor.logo}
                     alt="vendor_logo"
                     width={200}
                     height={200}
@@ -16,7 +16,7 @@ const VendorsCard = ({ vendor }: { vendor: VendorProps }) => {
                 />
             </div>
             <h1 className="mt-4 font-semibold text-base">
-                {vendor.businessName}
+                {vendor?.businessName}
             </h1>
         </Link>
     );

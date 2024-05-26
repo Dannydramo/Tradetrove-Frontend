@@ -8,6 +8,7 @@ import ProductCardSkeleton from '../skeleton/ProductCardSkeleton';
 const VendorProducts = ({ vendorId }: { vendorId: string }) => {
     const [products, setProducts] = useState<ProductProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         const fetchProductByVendor = async () => {
             setIsLoading(true);
@@ -22,18 +23,28 @@ const VendorProducts = ({ vendorId }: { vendorId: string }) => {
             setIsLoading(false);
         };
         fetchProductByVendor();
-    }, []);
+    }, [vendorId]);
+
     return (
         <>
             {isLoading ? (
                 <ProductCardSkeleton />
             ) : (
                 <>
-                    <div className="grid sm:grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
-                        {products.map((product: ProductProps) => (
-                            <ProductCard key={product._id} product={product} />
-                        ))}
-                    </div>
+                    {products.length > 0 ? (
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
+                            {products.map((product: ProductProps) => (
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500 mt-10">
+                            No products found for this vendor.
+                        </p>
+                    )}
                 </>
             )}
         </>

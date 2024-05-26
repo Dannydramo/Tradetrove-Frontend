@@ -44,7 +44,7 @@ const ProductComponent = ({ productDetails }: { productDetails: any }) => {
                     {productDetails && (
                         <>
                             <div className="w-full md:w-1/2">
-                                <div className="h-[50vh] sm:h-[65vh] bg-gray-200 px-8 flex justify-center items-center">
+                                <div className="min-h-[50vh] sm:min-h-[65vh] bg-gray-200 px-8 flex justify-center items-center">
                                     <Image
                                         src={
                                             productDetails?.images[
@@ -58,7 +58,7 @@ const ProductComponent = ({ productDetails }: { productDetails: any }) => {
                                     />
                                 </div>
 
-                                <div className="flex space-x-4 mt-6">
+                                <div className="flex space-x-4 mt-6 overflow-scroll lg:overflow-hidden">
                                     {productDetails?.images.map(
                                         (image: string, index: number) => (
                                             <div
@@ -108,61 +108,79 @@ const ProductComponent = ({ productDetails }: { productDetails: any }) => {
                                 <p className="text-xl font-semibold">
                                     ₦{productDetails?.price}
                                 </p>
-
-                                <div className="flex items-center space-x-8 my-4 border-2 w-fit px-6 py-2 rounded-sm">
-                                    <span>
-                                        <svg
-                                            onClick={handleQuantityDecrease}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth={1.5}
-                                            stroke="currentColor"
-                                            className="w-6 h-6 cursor-pointer"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M5 12h14"
-                                            />
-                                        </svg>
-                                    </span>
-
-                                    <span>{quantity}</span>
-
-                                    <span>
+                                {productDetails.inStock ? (
+                                    <>
                                         {' '}
-                                        <svg
-                                            onClick={handleQuantityIncrease}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            strokeWidth={1.5}
-                                            stroke="currentColor"
-                                            className="w-6 h-6 cursor-pointer"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M12 4.5v15m7.5-7.5h-15"
-                                            />
-                                        </svg>
-                                    </span>
-                                </div>
-                                <div className="flex gap-2 items-center">
-                                    <Button
-                                        onClick={handleAddToCart}
-                                        disabled={!productDetails.inStock}
-                                        className="bg-[#4F80E1] text-white hover:bg-[#4F80E1] px-6 py-4 rounded-sm mt-4 w-64"
-                                    >
-                                        Add to cart
-                                    </Button>
-                                    <div className="border px-4 pt-[9px] rounded-sm mt-4 h-10">
-                                        <Wishlist
-                                            productId={productDetails._id}
-                                        />
-                                    </div>
-                                </div>
+                                        <div className="flex items-center space-x-8 my-4 border-2 w-fit px-6 py-2 rounded-sm">
+                                            <span>
+                                                <svg
+                                                    onClick={
+                                                        handleQuantityDecrease
+                                                    }
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.5}
+                                                    stroke="currentColor"
+                                                    className="w-6 h-6 cursor-pointer"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M5 12h14"
+                                                    />
+                                                </svg>
+                                            </span>
+
+                                            <span>{quantity}</span>
+
+                                            <span>
+                                                {' '}
+                                                <svg
+                                                    onClick={
+                                                        handleQuantityIncrease
+                                                    }
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    strokeWidth={1.5}
+                                                    stroke="currentColor"
+                                                    className="w-6 h-6 cursor-pointer"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        d="M12 4.5v15m7.5-7.5h-15"
+                                                    />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <div className="flex gap-2 items-center">
+                                            <Button
+                                                onClick={handleAddToCart}
+                                                disabled={
+                                                    !productDetails.inStock
+                                                }
+                                                className="bg-[#4F80E1] text-white hover:bg-[#4F80E1] px-6 py-4 rounded-sm mt-4 w-64"
+                                            >
+                                                Add to cart
+                                            </Button>
+                                            <div className="border px-4 pt-[9px] rounded-sm mt-4 h-10">
+                                                <Wishlist
+                                                    productId={
+                                                        productDetails._id
+                                                    }
+                                                />
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <p className="my-6 text-sm">
+                                            Product is not in stock
+                                        </p>
+                                    </>
+                                )}
                             </div>
                         </>
                     )}

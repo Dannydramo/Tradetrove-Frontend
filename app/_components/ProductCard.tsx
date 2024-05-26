@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
                             alt="product_img"
                             width={200}
                             height={200}
-                            className="w-[150px] h-[200px] block m-auto"
+                            className="sm:w-[200px] sm:h-[200px] block m-auto"
                         />
                     )}
                 </Link>
@@ -27,7 +27,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
                     {product.productName}
                 </h3>
                 <div className="mt-2 flex items-center gap-4">
-                    <p className="border-2 px-4 py-1 rounded-full">
+                    <p className="border-2 text-sm px-4 py-1 rounded-full">
                         {product.inStock === true ? 'Instock' : 'Out of stock'}
                     </p>
                     <p className="text-xs font-medium text-gray-900 sm:text-sm md:text-base">

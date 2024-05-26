@@ -7,6 +7,7 @@ import ProductCardSkeleton from '../skeleton/ProductCardSkeleton';
 const PopularVendors = () => {
     const [vendors, setVendors] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         const fetchAllVendor = async () => {
             try {
@@ -15,6 +16,7 @@ const PopularVendors = () => {
                     setLoading(false);
                     return;
                 }
+
                 setVendors(data);
                 setLoading(false);
             } catch (error) {
@@ -25,6 +27,7 @@ const PopularVendors = () => {
         };
         fetchAllVendor();
     }, []);
+
     return (
         <div className="my-12">
             <h1 className="font-bold text-center text-xl uppercase">
@@ -32,20 +35,23 @@ const PopularVendors = () => {
             </h1>
             {!loading ? (
                 <>
-                    {' '}
-                    <div className="grid grid-cols-2 gap-8 my-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {vendors.map((vendor) => (
-                            <VendorsCard
-                                key={vendor?._id}
-                                vendor={vendor.vendor}
-                            />
-                        ))}
-                    </div>
+                    {vendors.length > 0 ? (
+                        <div className="grid grid-cols-2 gap-8 my-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {vendors.map((vendor) => (
+                                <VendorsCard
+                                    key={vendor?._id}
+                                    vendor={vendor}
+                                />
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-center text-gray-500">
+                            No popular vendors found.
+                        </p>
+                    )}
                 </>
             ) : (
-                <>
-                    <ProductCardSkeleton />
-                </>
+                <ProductCardSkeleton />
             )}
         </div>
     );
