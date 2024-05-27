@@ -6,16 +6,9 @@ import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://tradetrove.vercel.app'),
     title: 'Tradetrove',
     description:
         'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Tradetrove',
-        description:
-            'Welcome to Tradetrove - Your trusted marketplace for unique and valuable items.',
-    },
 };
 
 export default function RootLayout({
