@@ -11,6 +11,10 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
+    const interSemiBold = fetch(
+        new URL('./SpaceMono-Regular.ttf', import.meta.url)
+    ).then((res) => res.arrayBuffer());
+
     return new ImageResponse(
         (
             <div
@@ -26,7 +30,6 @@ export default async function Image() {
                     justifyContent: 'center',
                     padding: '10px',
                     color: '#4F80E1',
-                    fontFamily: 'Verdana, sans-serif',
                 }}
             >
                 Tradetrove
@@ -34,6 +37,14 @@ export default async function Image() {
         ),
         {
             ...size,
+            fonts: [
+                {
+                    name: 'Inter',
+                    data: await interSemiBold,
+                    style: 'normal',
+                    weight: 400,
+                },
+            ],
         }
     );
 }
