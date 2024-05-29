@@ -7,6 +7,7 @@ const VendorsCard = ({ vendor }: { vendor: VendorProps }) => {
     return (
         <Link href={`/vendor/${vendor?.businessName}`}>
             <div className="bg-gray-200 rounded-sm py-8 px-2 sm:px-4">
+                {' '}
                 <Image
                     src={vendor.logo}
                     alt="vendor_logo"

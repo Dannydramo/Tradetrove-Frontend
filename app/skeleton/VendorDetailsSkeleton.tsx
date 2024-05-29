@@ -1,7 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import React from 'react';
 import ProductCardSkeleton from './ProductCardSkeleton';
-import CartSkeleton from './CartSkeleton';
 
 const VendorDetailsSkeleton = () => {
     return (

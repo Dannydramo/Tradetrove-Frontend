@@ -36,7 +36,7 @@ const PopularVendors = () => {
             {!loading ? (
                 <>
                     {vendors.length > 0 ? (
-                        <div className="grid grid-cols-2 gap-8 my-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <div className="grid grid-cols-2 gap-8 my-8  lg:grid-cols-3 xl:grid-cols-4">
                             {vendors.map((vendor) => (
                                 <VendorsCard
                                     key={vendor?._id}
@@ -45,7 +45,7 @@ const PopularVendors = () => {
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center text-gray-500">
+                        <p className="text-center text-gray-500 mt-8">
                             No popular vendors found.
                         </p>
                     )}

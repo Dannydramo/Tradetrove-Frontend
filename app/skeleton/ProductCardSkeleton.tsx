@@ -3,7 +3,7 @@ import React from 'react';
 
 const ProductCardSkeleton = () => {
     return (
-        <div className="grid sm:grid-cols-2 gap-6 my-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-8 my-8  lg:grid-cols-3 xl:grid-cols-4">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((card) => (
                 <div key={card}>
                     <Skeleton className="w-full h-[200px] md:h-[300px] md:w-[300px] bg-gray-200" />

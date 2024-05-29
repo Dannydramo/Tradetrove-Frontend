@@ -11,7 +11,7 @@ export const size = {
 export const contentType = 'image/png';
 
 export default async function Image() {
-    const interSemiBold = fetch(
+    const spaceMono = fetch(
         new URL('./SpaceMono-Regular.ttf', import.meta.url)
     ).then((res) => res.arrayBuffer());
 
@@ -19,7 +19,7 @@ export default async function Image() {
         (
             <div
                 style={{
-                    background: 'white',
+                    background: '#F6F8FF',
                     fontSize: 128,
                     letterSpacing: '-0.05em',
                     display: 'flex',
@@ -39,8 +39,8 @@ export default async function Image() {
             ...size,
             fonts: [
                 {
-                    name: 'Inter',
-                    data: await interSemiBold,
+                    name: 'SpaceMono',
+                    data: await spaceMono,
                     style: 'normal',
                     weight: 400,
                 },
