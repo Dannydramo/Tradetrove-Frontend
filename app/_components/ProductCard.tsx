@@ -14,7 +14,7 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
                             alt="product_img"
                             width={200}
                             height={200}
-                            className="sm:w-[200px] sm:h-[200px] block m-auto"
+                            className="w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] block m-auto"
                         />
                     )}
                 </Link>
