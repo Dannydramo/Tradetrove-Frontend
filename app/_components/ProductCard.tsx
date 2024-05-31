@@ -34,6 +34,14 @@ const ProductCard = ({ product }: { product: ProductProps }) => {
                         ₦{product.price}
                     </p>
                 </div>
+                {product.vendorDetails && (
+                    <Link
+                        href={`/vendor/${product.vendorDetails.businessName}`}
+                        className="my-4 text-xs font-semibold"
+                    >
+                        Product By: {product.vendorDetails.businessName}
+                    </Link>
+                )}
             </div>
         </div>
     );

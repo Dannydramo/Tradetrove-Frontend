@@ -18,7 +18,7 @@ const Checkout = () => {
 
     return (
         <div>
-            <div className="text-center mx-auto mt-12">
+            <div className="text-center mx-auto mt-24">
                 <div className="mb-8">
                     <Image
                         src={'/successful-payment.svg'}
@@ -38,7 +38,7 @@ const Checkout = () => {
                 <div className="flex justify-center mt-8">
                     <Button
                         onClick={() => {
-                            router.replace('/');
+                            router.replace('/market-place');
                         }}
                         className="px-6 bg-[#4F80E1] flex items-center gap-2 text-sm rounded-sm hover:bg-[#4F80E1] text-white py-3"
                     >

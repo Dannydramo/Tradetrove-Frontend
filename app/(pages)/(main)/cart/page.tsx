@@ -1,6 +1,5 @@
 'use client';
 import useCartStore from '@/store/cartStore';
-import Layout from '@/app/_components/Layout';
 import {
     Table,
     TableBody,
@@ -20,6 +19,7 @@ import { useRouter } from 'next/navigation';
 import CartSkeleton from '@/app/skeleton/CartSkeleton';
 import { UserStore } from '@/store/userStore';
 import Link from 'next/link';
+import DashboardLayout from '../_components/DashboardLayout';
 
 const Cart = () => {
     const { cart, addToCart, removeFromCart }: any = useCartStore();
@@ -136,7 +136,8 @@ const Cart = () => {
     };
 
     return (
-        <Layout>
+        <DashboardLayout>
+            {' '}
             {loading && !vendorDetails ? (
                 <>
                     <CartSkeleton />
@@ -394,7 +395,7 @@ const Cart = () => {
                     )}
                 </>
             )}
-        </Layout>
+        </DashboardLayout>
     );
 };
 

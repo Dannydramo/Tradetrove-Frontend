@@ -8,6 +8,7 @@ import Message from './_components/Message';
 import { UserStore } from '@/store/userStore';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import DashboardLayout from '../_components/DashboardLayout';
 
 const Chat = () => {
     const [conversations, setConversations] = useState([]);
@@ -105,25 +106,37 @@ const Chat = () => {
     };
 
     return (
-        <Layout>
+        <DashboardLayout>
+            {' '}
             <div className="sm:flex sm:flex-row h-[calc(100vh-100px)]">
                 <div className="chatMenu">
                     <div className="p-4 h-[100%] bg-white rounded-md">
                         <h1 className="my-4 font-bold ml-4">Messages</h1>
-                        <div className="flex flex-row overflow-x-auto sm:flex-col">
-                            {conversations.map((conversation: any) => (
-                                <div
-                                    className=""
-                                    onClick={() => setCurrentChat(conversation)}
-                                    key={conversation._id}
-                                >
-                                    <Conversation
-                                        conversation={conversation}
-                                        currentUser={user?._id}
-                                    />
+                        {conversations.length > 0 ? (
+                            <div className="flex flex-row overflow-x-auto sm:flex-col">
+                                {conversations.map((conversation: any) => (
+                                    <div
+                                        className=""
+                                        onClick={() =>
+                                            setCurrentChat(conversation)
+                                        }
+                                        key={conversation._id}
+                                    >
+                                        <Conversation
+                                            conversation={conversation}
+                                            currentUser={user?._id}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <>
+                                <div className="text-xl font-bold my-8 text-center">
+                                    No vendor found. Please click on a vendor to
+                                    start a conversation
                                 </div>
-                            ))}
-                        </div>
+                            </>
+                        )}
                     </div>
                 </div>
                 <div className="chatBox">
@@ -376,7 +389,7 @@ const Chat = () => {
                     </div>
                 )}
             </div>
-        </Layout>
+        </DashboardLayout>
     );
 };
 

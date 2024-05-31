@@ -7,6 +7,7 @@ export interface ProductProps {
     price: number;
     inStock: boolean;
     images: string[];
+    vendorDetails?: any;
 }
 
 export interface CartProductProps {

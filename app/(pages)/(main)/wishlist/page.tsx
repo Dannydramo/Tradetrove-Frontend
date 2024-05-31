@@ -1,10 +1,10 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import ProfileLayout from '../_components/ProfileLayout';
 import { getAllWishlist, removeFromWishlist } from '@/app/service/wishlist';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
+import DashboardLayout from '../_components/DashboardLayout';
 
 const page = () => {
     const [wishlistData, setWishlistData] = useState<any[]>([]);
@@ -47,7 +47,8 @@ const page = () => {
         });
     };
     return (
-        <ProfileLayout>
+        <DashboardLayout>
+            <h1 className="my-2 mb-6 text-2xl font-semibold">Wishlist</h1>
             {wishlistData.length > 0 ? (
                 <div className="w-full">
                     {' '}
@@ -148,7 +149,7 @@ const page = () => {
                     </div>
                 </>
             )}
-        </ProfileLayout>
+        </DashboardLayout>
     );
 };
 

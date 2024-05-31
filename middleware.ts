@@ -11,5 +11,15 @@ export const middleware = (req: NextRequest) => {
 };
 
 export const config = {
-    matcher: ['/profile/:path*', '/checkout-success/:path*'],
+    matcher: [
+        '/profile/:path*',
+        '/checkout-success/:path*',
+        '/market-place/:path*',
+        '/orders/:path*',
+        '/wishlist/:path*',
+        '/vendors/:path*',
+        '/vendor/:path*',
+        '/chat/:path*',
+        '/product/:path*',
+    ],
 };

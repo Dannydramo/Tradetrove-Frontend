@@ -20,3 +20,20 @@ export const getProductDetails = async (productId: string) => {
     }
     return { status, message, data };
 };
+
+export const getProducts = async () => {
+    try {
+        const response = await Axios({
+            url: '/product/random-products',
+            method: 'get',
+        });
+
+        status = 200;
+        message = response.message;
+        data = response.data;
+    } catch (err: any) {
+        status = err.response.status;
+        message = err.response.data.message;
+    }
+    return { status, message, data };
+};

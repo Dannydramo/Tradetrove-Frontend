@@ -1,10 +1,9 @@
-import React from 'react';
-import ProfileLayout from '../_components/ProfileLayout';
 import PasswordForm from '../_components/PasswordForm';
+import DashboardLayout from '../../_components/DashboardLayout';
 
 const page = () => {
     return (
-        <ProfileLayout>
+        <DashboardLayout>
             <main className="md:px-8 w-full md:border-l">
                 <div className="border-b pb-4">
                     <h1 className="text-xl font-bold">Security</h1>
@@ -16,7 +15,7 @@ const page = () => {
                     <PasswordForm />
                 </div>
             </main>
-        </ProfileLayout>
+        </DashboardLayout>
     );
 };
 

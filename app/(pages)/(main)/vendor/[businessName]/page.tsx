@@ -6,6 +6,7 @@ import VendorProducts from '@/app/_components/VendorProducts';
 import { useEffect, useState } from 'react';
 import { VendorProps } from '@/app/interface/vendor';
 import VendorDetailsSkeleton from '@/app/skeleton/VendorDetailsSkeleton';
+import DashboardLayout from '../../_components/DashboardLayout';
 
 const VendorDetailsPage = ({
     params,
@@ -25,7 +26,6 @@ const VendorDetailsPage = ({
                     setLoading(false);
                     return;
                 }
-                console.log(data);
 
                 setLoading(false);
                 setVendorDetails(data);
@@ -38,7 +38,7 @@ const VendorDetailsPage = ({
         fetchVendorDetails();
     }, []);
     return (
-        <Layout>
+        <DashboardLayout>
             {loading ? (
                 <>
                     <VendorDetailsSkeleton />
@@ -46,9 +46,8 @@ const VendorDetailsPage = ({
             ) : (
                 <>
                     <div>
-                        {' '}
-                        <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                            <div className="lg:w-[40%] xl:w-[30%]">
+                        <div className="flex flex-col gap-6">
+                            <div className="">
                                 <Image
                                     src={vendorDetails?.logo!}
                                     alt={`${vendorDetails?.businessName} logo`}
@@ -150,7 +149,7 @@ const VendorDetailsPage = ({
                     </div>
                 </>
             )}
-        </Layout>
+        </DashboardLayout>
     );
 };
 

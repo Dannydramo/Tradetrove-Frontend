@@ -1,12 +1,12 @@
 import React from 'react';
-import ProfileLayout from '../_components/ProfileLayout';
 import OrderTable from './OrderTable';
+import DashboardLayout from '../_components/DashboardLayout';
 
 const page = () => {
     return (
-        <ProfileLayout>
+        <DashboardLayout>
             <OrderTable />
-        </ProfileLayout>
+        </DashboardLayout>
     );
 };
 

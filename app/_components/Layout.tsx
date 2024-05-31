@@ -1,32 +1,9 @@
 'use client';
-import useCartStore from '@/store/cartStore';
-import { UserStore } from '@/store/userStore';
+
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-import { getUserDetails } from '../service/onboarding';
-import { usePathname } from 'next/navigation';
+import React from 'react';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const { totalProducts }: any = useCartStore();
-    const { user, setUser } = UserStore();
-    const pathname = usePathname();
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const { message, data, status } = await getUserDetails();
-                if (status !== 200) {
-                    console.log(message);
-                    return;
-                }
-
-                setUser(data);
-            } catch (error) {
-                console.log('Unable to fetch user details');
-            }
-        };
-        fetchUserDetails();
-    }, []);
-
     return (
         <div className="w-[95%] sm:w-[90%] mx-auto max-w-9xl">
             <nav className="py-6">
@@ -67,71 +44,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                         </div>
                     </Link>
                     <div className="flex space-x-8 items-center">
-                        <Link href={'/cart'} className="relative">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                                />
-                            </svg>
-                            <span className="text-[10px] text-white bg-[#4F80E1] p-[3px] rounded absolute -top-3 -right-2">
-                                {totalProducts}
-                            </span>
+                        <Link href={'/login'}>Login</Link>
+                        <Link
+                            href={'/signup'}
+                            className="px-6 py-2 rounded-full bg-[#4F80E1] text-white"
+                        >
+                            Signup
                         </Link>
-                        {user ? (
-                            <Link href="/profile/orders">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={1.5}
-                                    stroke="currentColor"
-                                    className="w-6 h-6"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                    />
-                                </svg>
-                            </Link>
-                        ) : (
-                            <div className="">
-                                <Link href={'/login'} className="">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={1.5}
-                                        stroke="currentColor"
-                                        className="w-6 h-6"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                                        />
-                                    </svg>
-                                </Link>
-                            </div>
-                        )}
                     </div>
                 </div>
             </nav>
             <main className="mt-2"> {children}</main>
-            <section
-                className={`py-10 sm:pt-16 lg:pt-24 ${
-                    pathname === '/chat' ? 'hidden' : 'block'
-                }`}
-            >
+            <section className={`py-10 sm:pt-16 lg:pt-24`}>
                 <div className="">
                     <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
                         <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
@@ -360,32 +284,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-
-                        <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
-                            <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
-                                Subscribe to newsletter
-                            </p>
-
-                            <form className="mt-6">
-                                <div>
-                                    <label className="sr-only">Email</label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Enter your email"
-                                        className="block w-full p-4 text-black placeholder-gray-500 transition-all duration-200 bg-white border border-gray-200 rounded-md focus:outline-none focus:border-blue-600 caret-blue-600"
-                                    />
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="inline-flex items-center justify-center px-6 py-4 mt-3 font-semibold text-white transition-all duration-200 bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700"
-                                >
-                                    Subscribe
-                                </button>
-                            </form>
                         </div>
                     </div>
 

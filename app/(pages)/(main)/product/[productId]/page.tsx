@@ -2,6 +2,7 @@ import Layout from '@/app/_components/Layout';
 import { getProductDetails } from '@/app/service/product';
 import ProductComponent from './ProductComponent';
 import { Metadata, ResolvingMetadata } from 'next';
+import DashboardLayout from '../../_components/DashboardLayout';
 
 type Props = {
     params: { productId: string };
@@ -84,9 +85,9 @@ const ProductDetails = async ({
     }
 
     return (
-        <Layout>
+        <DashboardLayout>
             <ProductComponent productDetails={productDetails} />
-        </Layout>
+        </DashboardLayout>
     );
 };
 

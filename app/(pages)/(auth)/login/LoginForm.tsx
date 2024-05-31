@@ -59,7 +59,7 @@ const LoginForm = () => {
                     maxAge: 30 * 24 * 60 * 60,
                     path: '/',
                 });
-                router.replace('/');
+                router.replace('/market-place');
             } catch (error) {
                 toast.error('Unable to process form submission');
                 setIsLoading(false);
