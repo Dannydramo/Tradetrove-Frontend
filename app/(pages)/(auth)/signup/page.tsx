@@ -49,6 +49,21 @@ const Signup = () => {
                             Login
                         </Link>
                     </div>
+                    <div className="flex items-center text-xs my-4 w-full">
+                        <hr className="flex-grow border-gray-300" />
+                        <span className="px-3 text-gray-500">OR</span>
+                        <hr className="flex-grow border-gray-300" />
+                    </div>
+
+                    <div className="w-full text-xs">
+                        <a
+                            href="http://tradetrove-admin.vercel.app/signup"
+                            target="_blank"
+                            className="block w-full mt-2 rounded-sm py-3 text-center bg-gray-300"
+                        >
+                            Signup as a vendor
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

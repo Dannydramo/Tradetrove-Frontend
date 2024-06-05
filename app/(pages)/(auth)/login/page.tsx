@@ -44,10 +44,25 @@ const Login = () => {
                 <div className="flex justify-center w-80 sm:min-w-96 items-center flex-col">
                     <LoginForm />
                     <div className="mt-6 text-xs flex gap-1 text-start">
-                        <p>Dont have an account?</p>
+                        <p>Don't have an account?</p>
                         <Link href={'/signup'} className="underline">
                             Signup
                         </Link>
+                    </div>
+                    <div className="flex items-center text-xs my-4 w-full">
+                        <hr className="flex-grow border-gray-300" />
+                        <span className="px-3 text-gray-500">OR</span>
+                        <hr className="flex-grow border-gray-300" />
+                    </div>
+
+                    <div className="w-full text-xs">
+                        <a
+                            href="http://tradetrove-admin.vercel.app/login"
+                            target="_blank"
+                            className="block w-full mt-2 rounded-sm py-3 text-center bg-gray-300"
+                        >
+                            Login as a vendor
+                        </a>
                     </div>
                 </div>
             </div>
