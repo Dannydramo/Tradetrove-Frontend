@@ -54,7 +54,7 @@ const ProductComponent = ({ productDetails }: { productDetails: any }) => {
                                         alt=""
                                         width={500}
                                         height={500}
-                                        className="w-[300px] h-[300px]"
+                                        className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px]"
                                     />
                                 </div>
 

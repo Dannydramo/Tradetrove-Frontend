@@ -1,3 +1,5 @@
+import { VendorProps } from './vendor';
+
 export interface ProductProps {
     quantity: string;
     _id: string;
@@ -7,7 +9,8 @@ export interface ProductProps {
     price: number;
     inStock: boolean;
     images: string[];
-    vendorDetails?: any;
+    vendorDetails?: VendorProps;
+    vendor?: VendorProps;
 }
 
 export interface CartProductProps {

@@ -60,7 +60,7 @@ const page = () => {
                             <div className="flex gap-6 items-center">
                                 <div className="bg-gray-200 p-4 rounded-sm w-fit relative">
                                     <Image
-                                        src={wishlist.product.images[0]}
+                                        src={wishlist.product?.images[0]!}
                                         alt="Product image"
                                         height={50}
                                         width={50}
@@ -76,7 +76,7 @@ const page = () => {
                                             className="w-4 h-4"
                                             onClick={() =>
                                                 handleRemoveWishlist(
-                                                    wishlist.product._id
+                                                    wishlist.product?._id
                                                 )
                                             }
                                         >
@@ -89,9 +89,9 @@ const page = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col space-y-1">
-                                    <p>{wishlist.product.productName}</p>
+                                    <p>{wishlist.product?.productName}</p>
                                     <Link
-                                        href={`/product/${wishlist.product._id}`}
+                                        href={`/product/${wishlist.product?._id}`}
                                         className="border sm:hidden mt-4 text-xs rounded-md p-3 sm:py-3 sm:px-6"
                                     >
                                         View Product Details
@@ -101,14 +101,14 @@ const page = () => {
                                         <p>
                                             Added on:{' '}
                                             {formatDateToWords(
-                                                wishlist.createdAt
+                                                wishlist?.createdAt
                                             )}
                                         </p>
                                         <p
                                             className="font-semibold cursor-pointer"
                                             onClick={() =>
                                                 handleRemoveWishlist(
-                                                    wishlist.product._id
+                                                    wishlist.product?._id
                                                 )
                                             }
                                         >
@@ -118,9 +118,9 @@ const page = () => {
                                 </div>
                             </div>
                             <div className="hidden sm:flex items-center gap-6">
-                                <p> ₦{wishlist.product.price}</p>
+                                <p> ₦{wishlist.product?.price}</p>
                                 <Link
-                                    href={`/product/${wishlist.product._id}`}
+                                    href={`/product/${wishlist.product?._id!}`}
                                     className="border rounded-md py-3 px-6"
                                 >
                                     View Product Details
@@ -131,9 +131,7 @@ const page = () => {
                 </div>
             ) : (
                 <>
-                    {' '}
-                    <div className="md:border-l px-6 w-full">
-                        {' '}
+                    <div className="px-6 w-full">
                         <div className="text-center mx-auto mt-12 h-full flex flex-col justify-center items-center">
                             <Image
                                 src="/empty-state.svg"

@@ -2,8 +2,10 @@
 
 import Link from 'next/link';
 import React from 'react';
-
+import { getCookie } from 'cookies-next';
 const Layout = ({ children }: { children: React.ReactNode }) => {
+    const isLoggedIn = getCookie('isLoggedIn');
+
     return (
         <div className="w-[95%] sm:w-[90%] mx-auto max-w-9xl">
             <nav className="py-6">
@@ -43,15 +45,40 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             <h1>Tradetrove</h1>
                         </div>
                     </Link>
-                    <div className="flex space-x-8 items-center">
-                        <Link href={'/login'}>Login</Link>
-                        <Link
-                            href={'/signup'}
-                            className="px-6 py-2 rounded-full bg-[#4F80E1] text-white"
-                        >
-                            Signup
-                        </Link>
-                    </div>
+                    {isLoggedIn ? (
+                        <>
+                            {' '}
+                            <Link href={'/market-place'}>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="w-5 h-5"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                                    />
+                                </svg>
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            {' '}
+                            <div className="flex space-x-8 items-center">
+                                <Link href={'/login'}>Login</Link>
+                                <Link
+                                    href={'/signup'}
+                                    className="px-6 py-2 rounded-full bg-[#4F80E1] text-white"
+                                >
+                                    Signup
+                                </Link>
+                            </div>
+                        </>
+                    )}
                 </div>
             </nav>
             <main className="mt-2"> {children}</main>

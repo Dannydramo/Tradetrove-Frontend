@@ -13,7 +13,7 @@ const page = () => {
 
     return (
         <ProfileLayout>
-            <section className="md:px-8 w-full md:border-l">
+            <section className="md:px-8 w-full">
                 <h1 className="font-semibold text-base">Account Details</h1>
                 <div className="w-full md:max-w-[400px] my-12">
                     <Avatar>

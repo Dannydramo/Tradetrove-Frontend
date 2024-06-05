@@ -166,7 +166,7 @@ const Cart = () => {
                                 </div>
                                 <div className="flex justify-center">
                                     <Link
-                                        href={'/'}
+                                        href={'/market-place'}
                                         className="px-6 bg-[#4F80E1] flex items-center gap-2 text-sm rounded-sm hover:bg-[#4F80E1] text-white py-3"
                                     >
                                         <span>Start shopping</span>
@@ -208,7 +208,7 @@ const Cart = () => {
                                     </p>
                                     <Table>
                                         <TableCaption>
-                                            Total Price for
+                                            Total Price for &nbsp;
                                             {
                                                 vendorDetails[vendorId]
                                                     ?.businessName
