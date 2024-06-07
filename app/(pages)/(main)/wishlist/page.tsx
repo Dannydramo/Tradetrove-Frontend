@@ -55,7 +55,7 @@ const page = () => {
                     {wishlistData.map((wishlist) => (
                         <div
                             key={wishlist._id}
-                            className="flex space-x-6 justify-between items-center h-fit pb-4 w-full lg:w-[90%] xl:w-[70%] even:mt-4 odd:border-b"
+                            className="flex space-x-6 justify-between items-center h-fit pb-4 w-full lg:w-[90%] xl:w-[70%] mt-4 border-b"
                         >
                             <div className="flex gap-6 items-center">
                                 <div className="bg-gray-200 p-4 rounded-sm w-fit relative">
@@ -89,10 +89,12 @@ const page = () => {
                                     </div>
                                 </div>
                                 <div className="flex flex-col space-y-1">
-                                    <p>{wishlist.product?.productName}</p>
+                                    <p className="text-sm sm:text-base">
+                                        {wishlist.product?.productName}
+                                    </p>
                                     <Link
                                         href={`/product/${wishlist.product?._id}`}
-                                        className="border sm:hidden mt-4 text-xs rounded-md p-3 sm:py-3 sm:px-6"
+                                        className="border sm:hidden mt-4 text-xs w-fit rounded-md p-3 sm:py-3 sm:px-6"
                                     >
                                         View Product Details
                                     </Link>
@@ -131,8 +133,9 @@ const page = () => {
                 </div>
             ) : (
                 <>
-                    <div className="px-6 w-full">
-                        <div className="text-center mx-auto mt-12 h-full flex flex-col justify-center items-center">
+                    <div className="text-center mx-auto mt-12">
+                        <div className="mb-8">
+                            {' '}
                             <Image
                                 src="/empty-state.svg"
                                 alt="Empty State"
@@ -143,6 +146,30 @@ const page = () => {
                             <p>
                                 Your wishlist history is waiting to be filled.
                             </p>
+                        </div>
+                        <div className="flex justify-center">
+                            <Link
+                                href={'/market-place'}
+                                className="px-6 bg-[#4F80E1] flex items-center gap-2 text-sm rounded-sm hover:bg-[#4F80E1] text-white py-3"
+                            >
+                                <span>Start shopping</span>
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-4 h-4"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                                        />
+                                    </svg>
+                                </span>
+                            </Link>
                         </div>
                     </div>
                 </>

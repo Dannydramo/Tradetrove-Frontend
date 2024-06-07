@@ -13,6 +13,7 @@ import {
 import { Order } from '@/app/interface/order';
 import Image from 'next/image';
 import { getAllOrders } from '@/app/service/orders';
+import Link from 'next/link';
 
 const OrderTable = () => {
     const [orderData, setOrderData] = useState<Order[]>([]);
@@ -115,9 +116,9 @@ const OrderTable = () => {
             ) : (
                 <>
                     {' '}
-                    <div className="px-6 w-full">
-                        {' '}
-                        <div className="text-center mx-auto mt-12 h-full flex flex-col justify-center items-center">
+                    <div className="text-center mx-auto mt-12">
+                        <div className="mb-8">
+                            {' '}
                             <Image
                                 src="/empty-state.svg"
                                 alt="Empty State"
@@ -126,6 +127,30 @@ const OrderTable = () => {
                                 className="mx-auto block my-4"
                             />
                             <p>Your order history is waiting to be filled.</p>
+                        </div>
+                        <div className="flex justify-center">
+                            <Link
+                                href={'/market-place'}
+                                className="px-6 bg-[#4F80E1] flex items-center gap-2 text-sm rounded-sm hover:bg-[#4F80E1] text-white py-3"
+                            >
+                                <span>Start shopping</span>
+                                <span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={1.5}
+                                        stroke="currentColor"
+                                        className="w-4 h-4"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"
+                                        />
+                                    </svg>
+                                </span>
+                            </Link>
                         </div>
                     </div>
                 </>

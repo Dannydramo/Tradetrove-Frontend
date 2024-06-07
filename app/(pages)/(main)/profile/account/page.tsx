@@ -1,18 +1,19 @@
 'use client';
 import React, { useState } from 'react';
-import ProfileLayout from '../_components/ProfileLayout';
 import { UserStore } from '@/store/userStore';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import DashboardLayout from '../../_components/DashboardLayout';
 
 const page = () => {
     const { user } = UserStore();
     const [isLoading, setIsLoading] = useState(false);
 
     return (
-        <ProfileLayout>
+        <DashboardLayout>
+            {' '}
             <section className="md:px-8 w-full">
                 <h1 className="font-semibold text-base">Account Details</h1>
                 <div className="w-full md:max-w-[400px] my-12">
@@ -71,7 +72,7 @@ const page = () => {
                     </form>
                 </div>
             </section>
-        </ProfileLayout>
+        </DashboardLayout>
     );
 };
 

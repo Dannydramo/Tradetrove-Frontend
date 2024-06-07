@@ -39,10 +39,10 @@ const VendorDetails = ({
                             src={vendor.logo}
                             width={50}
                             height={50}
-                            className="w-[100px] h-[100px] rounded-[95%]"
+                            className="w-[70px] h-[70px] rounded-[90%]"
                             alt={vendor?.businessName}
                         />
-                        <div className="">
+                        <div className="text-sm my-2">
                             <h1>{vendor?.businessName}</h1>
                             <a
                                 href={`mailto:${vendor?.email}`}
@@ -91,7 +91,7 @@ const VendorDetails = ({
                             </a>
                             <p></p>
                         </div>
-                        <div className="mt-4 space-y-4">
+                        <div className="mt-4 text-sm space-y-4">
                             <p>{vendor?.description}</p>
                             <p className="flex items-center gap-2 text-sm my-2">
                                 <span>
@@ -118,11 +118,11 @@ const VendorDetails = ({
                                 <span>{`${vendor?.address}, ${vendor?.city}, ${vendor?.country}`}</span>
                             </p>
                         </div>
-                        <div className="mt-6">
+                        <div className="mt-4">
                             {' '}
                             <Link
                                 href={`/vendor/${vendor.businessName}`}
-                                className="bg-[#4F80E1] text-white p-4 text-sm rounded"
+                                className="bg-[#4F80E1] text-white py-2 px-4 text-sm rounded"
                             >
                                 View Products
                             </Link>

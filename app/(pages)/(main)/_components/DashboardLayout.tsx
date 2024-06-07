@@ -43,7 +43,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <section className="flex w-full min-h-screen bg-[#F6F8FF]">
             <aside
-                className={`z-20 lg:block top-0 left-0 lg:fixed w-64 p-4 h-full bg-white text-black ${
+                className={`z-20 lg:block top-0 left-0 lg:fixed w-64 p-4 min-h-full bg-white text-black ${
                     mobileToggle ? 'fixed' : 'hidden'
                 }`}
             >
@@ -107,7 +107,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                         <Link
                             href={'/market-place'}
                             className={`flex items-center font-medium text-xs sm:text-sm md:text-base hover:bg-[#F6F8FF] hover:text-[#4F80E1] space-x-2 px-6 py-3 rounded-md  ${
-                                pathname === '/market-place' &&
+                                (pathname === '/market-place'|| pathname.includes('product')) &&
                                 'bg-[#F6F8FF] text-[#4F80E1]'
                             }`}
                         >

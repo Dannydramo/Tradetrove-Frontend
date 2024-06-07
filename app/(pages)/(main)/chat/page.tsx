@@ -110,8 +110,8 @@ const Chat = () => {
             {' '}
             <div className="sm:flex sm:flex-row h-[calc(100vh-100px)]">
                 <div className="chatMenu">
-                    <div className="p-4 h-[100%] bg-white rounded-md">
-                        <h1 className="my-4 font-bold ml-4">Messages</h1>
+                    <div className="p-2 sm:p-4 min-h-[100%] bg-white rounded-md">
+                        <h1 className="my-2 sm:my-4 font-bold ml-4">Messages</h1>
                         {conversations.length > 0 ? (
                             <div className="flex flex-row overflow-x-auto sm:flex-col">
                                 {conversations.map((conversation: any) => (
@@ -378,7 +378,7 @@ const Chat = () => {
                 </div>
                 {currentChat && (
                     <div className="chatDetails hidden md:block">
-                        <div className="p-4 h-[100%] bg-white rounded-md">
+                        <div className="p-4 min-h-[100%] bg-white rounded-md">
                             {user && (
                                 <VendorDetails
                                     currentChat={currentChat}

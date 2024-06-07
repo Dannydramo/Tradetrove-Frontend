@@ -92,7 +92,7 @@ const Reviews = ({ productId }: { productId: string }) => {
                         className="mx-auto block my-4"
                     />
                     <p>
-                        No reviews yet! Be the first t share your thought about
+                        No reviews yet! Be the first to share your thought about
                         this product.
                     </p>
                     <Button

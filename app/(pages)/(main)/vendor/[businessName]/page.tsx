@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { VendorProps } from '@/app/interface/vendor';
 import VendorDetailsSkeleton from '@/app/skeleton/VendorDetailsSkeleton';
 import DashboardLayout from '../../_components/DashboardLayout';
+import MessageVendor from '../../_components/MessageVendor';
 
 const VendorDetailsPage = ({
     params,
@@ -108,6 +109,12 @@ const VendorDetailsPage = ({
                                         </span>
                                     </a>
                                 )}
+                                <div className="my-4">
+                                    {' '}
+                                    <MessageVendor
+                                        vendorId={vendorDetails?._id!}
+                                    />
+                                </div>
                                 <p>{vendorDetails?.description}</p>
                             </div>
                         </div>
