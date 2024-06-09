@@ -23,7 +23,6 @@ const VendorDetails = ({
             if (status !== 200) {
                 return;
             }
-            console.log(data);
 
             setVendor(data);
         };

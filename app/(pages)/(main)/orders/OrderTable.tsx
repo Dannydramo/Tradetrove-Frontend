@@ -26,7 +26,6 @@ const OrderTable = () => {
                     console.log(message);
                     return;
                 }
-                console.log(data);
 
                 setOrderData(data);
             } catch (error) {

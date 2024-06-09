@@ -21,7 +21,6 @@ const LatestProducts = () => {
                     setLoading(false);
                     return;
                 }
-                console.log(data);
 
                 setProducts(data);
                 setLoading(false);
