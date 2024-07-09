@@ -6,14 +6,10 @@ let message: string;
 let data: any;
 
 export const getAllWishlist = async () => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: 'wishlist/',
             method: 'get',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
         });
 
         status = 200;
@@ -27,15 +23,11 @@ export const getAllWishlist = async () => {
 };
 
 export const addToWishlist = async (productId: string) => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: 'wishlist/new',
             method: 'post',
             body: { productId },
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
         });
 
         status = 200;
@@ -49,14 +41,10 @@ export const addToWishlist = async (productId: string) => {
 };
 
 export const removeFromWishlist = async (productId: string) => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: `wishlist/remove/${productId}`,
             method: 'delete',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
         });
 
         status = 200;
@@ -70,14 +58,10 @@ export const removeFromWishlist = async (productId: string) => {
 };
 
 export const fetchProductWishlistStatus = async (productId: string) => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: `wishlist/status/${productId}`,
             method: 'get',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
         });
         status = 200;
 

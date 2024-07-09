@@ -27,13 +27,11 @@ export const postReview = async (payload: {
     rating: number;
     productId: string;
 }) => {
-    const token = getCookie('token');
     try {
         const response = await Axios({
             url: `/review/create`,
             method: 'post',
             body: payload,
-            headers: { Authorization: `Bearer ${token}` },
         });
 
         status = 200;
