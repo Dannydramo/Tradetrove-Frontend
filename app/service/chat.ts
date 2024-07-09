@@ -1,5 +1,4 @@
 import { Axios } from '../helpers/axiosHelper';
-import { getCookie } from 'cookies-next';
 
 let status: number;
 let message: string;
