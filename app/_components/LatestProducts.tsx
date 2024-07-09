@@ -37,19 +37,19 @@ const LatestProducts = () => {
             <h1 className="font-bold sm:text-xl uppercase">Latest Products</h1>
             {!loading ? (
                 <>
-                    {products.length > 0 ? (
+                    {products?.length > 0 ? (
                         <div className="grid grid-cols-2 gap-8 my-8  lg:grid-cols-3 xl:grid-cols-4">
                             {products.map((product) =>
                                 isLoggedIn ? (
-                                    <>
+                                   
                                         <ProductCard
                                             key={product._id}
                                             product={product}
                                         />
-                                    </>
+                                 
                                 ) : (
                                     <>
-                                        <Link href={'/login'}>
+                                        <Link href={'/login'} key={product._id}>
                                             <div className="">
                                                 <div className="bg-gray-300 rounded-sm py-8 px-4 group relative">
                                                     <Link

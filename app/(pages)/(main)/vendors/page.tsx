@@ -129,7 +129,7 @@ const Vendors = () => {
             <section>
                 {!loading ? (
                     <>
-                        {filteredVendors.length > 0 ? (
+                        {filteredVendors?.length > 0 ? (
                             <div className="grid grid-cols-2 gap-8 my-8 lg:grid-cols-3 xl:grid-cols-4">
                                 {filteredVendors.map((vendor) => (
                                     <VendorsCard

@@ -35,7 +35,7 @@ const PopularVendors = () => {
             <h1 className="font-bold sm:text-xl uppercase">Popular Vendors</h1>
             {!loading ? (
                 <>
-                    {vendors.length > 0 ? (
+                    {vendors?.length > 0 ? (
                         <div className="grid grid-cols-2 gap-8 my-8  lg:grid-cols-3 xl:grid-cols-4">
                             {vendors.map((vendor) =>
                                 isLoggedIn ? (
