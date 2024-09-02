@@ -40,7 +40,6 @@ const PopularVendors = () => {
                             {vendors.map((vendor) =>
                                 isLoggedIn ? (
                                     <>
-                                        {' '}
                                         <VendorsCard
                                             key={vendor?._id}
                                             vendor={vendor}
@@ -48,12 +47,8 @@ const PopularVendors = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <div className="">
-                                            {' '}
-                                            <Link
-                                                key={vendor?._id}
-                                                href={`/login`}
-                                            >
+                                        <div key={vendor?._id}>
+                                            <Link href={`/login`}>
                                                 <div className="bg-gray-200 rounded-sm py-8 px-2 sm:px-4">
                                                     {' '}
                                                     <Image

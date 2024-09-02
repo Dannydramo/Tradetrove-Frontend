@@ -67,6 +67,8 @@ const Vendors = () => {
                     setLoading(false);
                     return;
                 }
+                console.log(data);
+
                 setVendors(data);
                 setFilteredVendors(data);
                 setLoading(false);
